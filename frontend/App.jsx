@@ -13,6 +13,8 @@ import DashboardPage from './pages/app/DashboardPage'
 import OrganizationPage from './pages/app/OrganizationPage'
 import AssetsPage from './pages/app/AssetsPage'
 import AllocationsPage from './pages/app/AllocationsPage'
+import TransfersPage from './pages/app/TransfersPage'
+import ApprovalsPage from './pages/app/ApprovalsPage'
 import BookingsPage from './pages/app/BookingsPage'
 import MaintenancePage from './pages/app/MaintenancePage'
 import AuditPage from './pages/app/AuditPage'
@@ -37,6 +39,8 @@ const AppContent = () => {
         <Route path="organization" element={<OrganizationPage />} />
         <Route path="assets" element={<AssetsPage />} />
         <Route path="allocations" element={<AllocationsPage />} />
+        <Route path="transfers" element={<TransfersPage />} />
+        <Route path="approvals" element={<ApprovalsPage />} />
         <Route path="bookings" element={<BookingsPage />} />
         <Route path="maintenance" element={<MaintenancePage />} />
         <Route path="audit" element={<AuditPage />} />

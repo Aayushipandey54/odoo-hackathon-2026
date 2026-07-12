@@ -17,6 +17,7 @@ import dashboardRouter from './dashboard.js'
 import activityLogRouter from './activityLogs.js'
 import notificationRouter from './notifications.js'
 import reportRouter from './reports.js'
+import workflowRouter from './workflow.js'
 
 const router = Router()
 
@@ -41,5 +42,6 @@ router.use('/dashboard', dashboardRouter)
 router.use('/activity-logs', activityLogRouter)
 router.use('/notifications', notificationRouter)
 router.use('/reports', reportRouter)
+router.use('/workflow', workflowRouter)
 
 export default router
