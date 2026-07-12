@@ -1,229 +1,114 @@
 # AssetFlow — Enterprise Asset & Resource Management System
 
-> **AssetFlow** is a modern Enterprise Asset & Resource Management System developed for the **Odoo Hackathon 2026**. It enables organizations to efficiently manage physical assets, shared resources, maintenance workflows, audits, and analytics through a centralized ERP platform.
+**AssetFlow** is a modern Enterprise Asset & Resource Management System developed for the **Odoo Hackathon 2026**. It helps organizations efficiently manage assets, shared resources, maintenance workflows, audits, and analytics through a centralized ERP platform.
 
-Built using a scalable **Modular Monolith Architecture**, AssetFlow combines enterprise-grade backend engineering with a premium, responsive user interface powered by the **IntelliX Design System**.
+Built on a **Modular Monolith Architecture**, AssetFlow combines a scalable backend with a modern, responsive interface powered by the **IntelliX Design System**.
 
 ---
 
 ## Overview
 
-Organizations often struggle with fragmented spreadsheets, manual tracking, double allocations, and inefficient maintenance processes. AssetFlow addresses these challenges by providing a unified platform to:
+AssetFlow replaces manual asset tracking with a centralized platform that enables organizations to:
 
-- Manage departments and employees
-- Track complete asset lifecycles
+- Manage departments, employees, and asset categories
+- Track assets throughout their lifecycle
 - Allocate and transfer assets securely
 - Book shared resources without scheduling conflicts
-- Automate maintenance approval workflows
-- Conduct structured asset audits
-- Monitor KPIs through real-time dashboards
-- Generate reports and operational insights
+- Manage maintenance workflows and approvals
+- Conduct audit cycles and generate reports
+- Monitor operations through real-time dashboards
 
-The platform is designed to be flexible enough for educational institutions, enterprises, hospitals, factories, government organizations, and any institution managing physical assets.
+Designed for educational institutions, enterprises, hospitals, factories, and other organizations managing physical assets.
 
 ---
 
-# Key Features
+## Key Features
 
-### Organization Management
-
-- Department Management
-- Employee Directory
-- Asset Category Management
+- Asset Registration & Lifecycle Tracking
+- QR Code-Based Asset Identification
+- Asset Allocation & Transfer Workflow
+- Shared Resource Booking
+- Maintenance Management
+- Audit & Compliance
+- Reports & Analytics
+- Notifications & Activity Logs
 - Role-Based Access Control (RBAC)
 
-### Asset Management
-
-- Asset Registration
-- QR Code Generation
-- Asset Lifecycle Tracking
-- Asset History
-- Asset Search & Filtering
-
-### Allocation & Transfer
-
-- Asset Allocation
-- Conflict Detection
-- Transfer Approval Workflow
-- Return Management
-- Overdue Tracking
-
-### Resource Booking
-
-- Shared Resource Calendar
-- Time Slot Validation
-- Conflict Prevention
-- Booking Reminders
-
-### Maintenance Management
-
-- Maintenance Requests
-- Approval Workflow
-- Technician Assignment
-- Repair Tracking
-- Maintenance History
-
-### Audit & Compliance
-
-- Audit Cycle Management
-- Auditor Assignment
-- Discrepancy Reports
-- Immutable Audit Logs
-
-### Reports & Analytics
-
-- KPI Dashboard
-- Asset Utilization
-- Maintenance Analytics
-- Department Reports
-- Resource Booking Heatmaps
-
-### Notifications & Activity Logs
-
-- Real-time Notifications
-- Action History
-- Approval Updates
-- Audit Logs
-
 ---
 
-# System Architecture
-
-AssetFlow follows a **Modular Monolith Architecture** using a **Monorepo** structure to ensure consistency, scalability, and maintainability.
+## System Architecture
 
 ```
-                Client (React + Vite)
-                        │
-                        │
-                 Nginx Reverse Proxy
-                        │
-        ┌───────────────┴───────────────┐
-        │                               │
-  Express.js Backend              Redis Cache
-        │
-   Prisma ORM
-        │
- PostgreSQL Database
+React + Vite
+      │
+ Nginx Reverse Proxy
+      │
+Express.js + TypeScript
+      │
+ Prisma ORM
+      │
+PostgreSQL + Redis
 ```
 
 ---
 
-# Technology Stack
+## Technology Stack
 
-## Backend
-
-- Express.js
-- TypeScript
-- Prisma ORM
-
-## Frontend
-
-- React
-- Vite
-- Tailwind CSS
-- Framer Motion
-- IntelliX Design System
-
-## Database
-
-- PostgreSQL
-- Redis
-
-## Infrastructure
-
-- Docker
-- Docker Compose
-- Nginx
+| Layer | Technologies |
+|--------|--------------|
+| Frontend | React, Vite, Tailwind CSS, Framer Motion |
+| Backend | Express.js, TypeScript, Prisma ORM |
+| Database | PostgreSQL, Redis |
+| Infrastructure | Docker, Docker Compose, Nginx |
 
 ---
 
-# Repository Structure
+## Repository Structure
 
 ```text
 odoo-hackathon-2026/
-│
-├── .github/                # GitHub Actions & CI/CD
-├── backend/                # Express.js + Prisma Backend
-├── frontend/               # React + Vite Frontend
-├── nginx/                  # Reverse Proxy Configuration
-├── scripts/                # Utility Scripts
-├── package.json            # Workspace Configuration
-├── README.md
-└── .gitignore
+├── backend/
+├── frontend/
+├── nginx/
+├── scripts/
+├── .github/
+├── package.json
+└── README.md
 ```
 
 ---
 
-# UI Design
+## Getting Started
 
-AssetFlow uses the **IntelliX Design System**, inspired by modern SaaS dashboards.
-
-### Highlights
-
-- Dark Mode First
-- Glassmorphism Components
-- Responsive Layout
-- Smooth Micro-interactions
-- Mobile-Friendly Design
-- Premium Dashboard Experience
-
----
-
-# Getting Started
-
-## Prerequisites
+### Prerequisites
 
 - Node.js v18+
-- Docker
-- Docker Compose
-- PostgreSQL
-- Redis
+- Docker & Docker Compose
 
----
-
-## 1️⃣ Start Infrastructure
+### Start Infrastructure
 
 ```bash
 docker-compose up -d
 ```
 
-This starts:
-
-- PostgreSQL
-- Redis
-- Nginx
-
----
-
-## 2️⃣ Backend Setup
+### Backend
 
 ```bash
 cd backend
-
 npm install
-
 npx prisma migrate dev
-
 npm run dev
 ```
 
----
-
-## 3️⃣ Frontend Setup
-
-Open another terminal.
+### Frontend
 
 ```bash
 cd frontend
-
 npm install
-
 npm run dev
 ```
 
----
-
-Application will be available at:
+Application runs at:
 
 ```
 http://localhost:5173
@@ -231,93 +116,38 @@ http://localhost:5173
 
 ---
 
-# Development Roadmap
+## Demo Video
 
-### Phase 1–3
+**Project Demo:**  
+**[Add YouTube / Google Drive Link Here]**
 
-- Infrastructure Setup
-- Authentication
-- RBAC
-- CRUD Foundations
+---
 
-### Phase 4–8
+## Screenshots
 
-- Organization Setup
-- Asset Management
-- QR Code Generation
-- Resource Booking
-- Maintenance Workflow
-
-### Phase 9
-
-- Audit & Compliance Engine
-- Asset Verification
-- Discrepancy Reports
-
-### Phase 10
+Add screenshots of:
 
 - Dashboard
-- KPI Analytics
-- WebSocket Notifications
-- Reports
-
-### Phase 11–13
-
-- Performance Optimization
-- Security Hardening
-- Docker Production Deployment
-- Enterprise Scaling
+- Asset Management
+- Resource Booking
+- Maintenance Module
+- Analytics Dashboard
 
 ---
 
-# Demo Video
-
- **Watch the complete project demonstration here:**
-
-> **Demo Link:** **[Add YouTube / Drive Link Here]**
-
-Example:
-
-```
-https://youtu.be/your-demo-video
-```
-
----
-
-# Project Screenshots
-
-> Add screenshots here after deployment.
-
-```
-Dashboard
-
-Organization Setup
-
-Asset Management
-
-Booking Calendar
-
-Analytics Dashboard
-```
-
----
-
-# Future Enhancements
+## Future Scope
 
 - AI-powered Predictive Maintenance
-- Asset Utilization Forecasting
+- RFID & IoT Integration
 - Mobile Application
-- RFID Integration
-- IoT Device Support
-- OCR-based Asset Registration
-- Advanced Analytics & BI Reports
-- Multi-Organization Support
+- OCR-Based Asset Registration
+- Advanced Analytics & Forecasting
 
 ---
 
-# Team
+## Team
 
-Developed with by
+Developed by:
 
 - **Aayushi Pandey**
 - **Nishant Shetty**
@@ -326,6 +156,6 @@ Developed with by
 
 ---
 
-# License
+## License
 
-This project was developed as part of the **Odoo Hackathon 2026** and is intended for educational and demonstration purposes.
+Developed as part of the **Odoo Hackathon 2026** for educational and demonstration purposes.
