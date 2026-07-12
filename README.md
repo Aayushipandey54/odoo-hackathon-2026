@@ -1,4 +1,4 @@
-# 🚀 AssetFlow — Enterprise Asset & Resource Management System
+# AssetFlow — Enterprise Asset & Resource Management System
 
 > **AssetFlow** is a modern Enterprise Asset & Resource Management System developed for the **Odoo Hackathon 2026**. It enables organizations to efficiently manage physical assets, shared resources, maintenance workflows, audits, and analytics through a centralized ERP platform.
 
@@ -6,7 +6,7 @@ Built using a scalable **Modular Monolith Architecture**, AssetFlow combines ent
 
 ---
 
-## 📖 Overview
+## Overview
 
 Organizations often struggle with fragmented spreadsheets, manual tracking, double allocations, and inefficient maintenance processes. AssetFlow addresses these challenges by providing a unified platform to:
 
@@ -23,16 +23,16 @@ The platform is designed to be flexible enough for educational institutions, ent
 
 ---
 
-# ✨ Key Features
+# Key Features
 
-### 🏢 Organization Management
+### Organization Management
 
 - Department Management
 - Employee Directory
 - Asset Category Management
 - Role-Based Access Control (RBAC)
 
-### 📦 Asset Management
+### Asset Management
 
 - Asset Registration
 - QR Code Generation
@@ -40,7 +40,7 @@ The platform is designed to be flexible enough for educational institutions, ent
 - Asset History
 - Asset Search & Filtering
 
-### 🔄 Allocation & Transfer
+### Allocation & Transfer
 
 - Asset Allocation
 - Conflict Detection
@@ -48,14 +48,14 @@ The platform is designed to be flexible enough for educational institutions, ent
 - Return Management
 - Overdue Tracking
 
-### 📅 Resource Booking
+### Resource Booking
 
 - Shared Resource Calendar
 - Time Slot Validation
 - Conflict Prevention
 - Booking Reminders
 
-### 🛠 Maintenance Management
+### Maintenance Management
 
 - Maintenance Requests
 - Approval Workflow
@@ -63,14 +63,14 @@ The platform is designed to be flexible enough for educational institutions, ent
 - Repair Tracking
 - Maintenance History
 
-### 📋 Audit & Compliance
+### Audit & Compliance
 
 - Audit Cycle Management
 - Auditor Assignment
 - Discrepancy Reports
 - Immutable Audit Logs
 
-### 📊 Reports & Analytics
+### Reports & Analytics
 
 - KPI Dashboard
 - Asset Utilization
@@ -78,7 +78,7 @@ The platform is designed to be flexible enough for educational institutions, ent
 - Department Reports
 - Resource Booking Heatmaps
 
-### 🔔 Notifications & Activity Logs
+### Notifications & Activity Logs
 
 - Real-time Notifications
 - Action History
@@ -87,7 +87,7 @@ The platform is designed to be flexible enough for educational institutions, ent
 
 ---
 
-# 🏗️ System Architecture
+# System Architecture
 
 AssetFlow follows a **Modular Monolith Architecture** using a **Monorepo** structure to ensure consistency, scalability, and maintainability.
 
@@ -108,7 +108,7 @@ AssetFlow follows a **Modular Monolith Architecture** using a **Monorepo** struc
 
 ---
 
-# 💻 Technology Stack
+# Technology Stack
 
 ## Backend
 
@@ -137,7 +137,7 @@ AssetFlow follows a **Modular Monolith Architecture** using a **Monorepo** struc
 
 ---
 
-# 📂 Repository Structure
+# Repository Structure
 
 ```text
 odoo-hackathon-2026/
@@ -154,22 +154,22 @@ odoo-hackathon-2026/
 
 ---
 
-# 🎨 UI Design
+# UI Design
 
 AssetFlow uses the **IntelliX Design System**, inspired by modern SaaS dashboards.
 
 ### Highlights
 
-- 🌙 Dark Mode First
-- ✨ Glassmorphism Components
-- 🎯 Responsive Layout
-- ⚡ Smooth Micro-interactions
-- 📱 Mobile-Friendly Design
-- 🎨 Premium Dashboard Experience
+- Dark Mode First
+- Glassmorphism Components
+- Responsive Layout
+- Smooth Micro-interactions
+- Mobile-Friendly Design
+- Premium Dashboard Experience
 
 ---
 
-# 🚀 Getting Started
+# Getting Started
 
 ## Prerequisites
 
@@ -231,7 +231,7 @@ http://localhost:5173
 
 ---
 
-# 📌 Development Roadmap
+# Development Roadmap
 
 ### Phase 1–3
 
@@ -270,9 +270,9 @@ http://localhost:5173
 
 ---
 
-# 📽️ Demo Video
+# Demo Video
 
-🎥 **Watch the complete project demonstration here:**
+ **Watch the complete project demonstration here:**
 
 > **Demo Link:** **[Add YouTube / Drive Link Here]**
 
@@ -284,7 +284,7 @@ https://youtu.be/your-demo-video
 
 ---
 
-# 📸 Project Screenshots
+# Project Screenshots
 
 > Add screenshots here after deployment.
 
@@ -302,7 +302,7 @@ Analytics Dashboard
 
 ---
 
-# 🔮 Future Enhancements
+# Future Enhancements
 
 - AI-powered Predictive Maintenance
 - Asset Utilization Forecasting
@@ -315,7 +315,7 @@ Analytics Dashboard
 
 ---
 
-# 🤝 Team
+# Team
 
 Developed with by
 
@@ -326,6 +326,6 @@ Developed with by
 
 ---
 
-# 📄 License
+# License
 
 This project was developed as part of the **Odoo Hackathon 2026** and is intended for educational and demonstration purposes.
