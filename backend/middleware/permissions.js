@@ -15,6 +15,12 @@ export const PERMISSIONS = {
   USER_UPDATE: 'user:update',
   USER_DELETE: 'user:delete',
 
+  // Audit & Compliance
+  AUDIT_CREATE: 'audit:create',
+  AUDIT_READ: 'audit:read',
+  AUDIT_VERIFY: 'audit:verify',
+  AUDIT_MANAGE: 'audit:manage',
+
   // General Access
   DASHBOARD_ACCESS: 'dashboard:access',
   REPORTS_ACCESS: 'reports:access',
@@ -33,11 +39,16 @@ export const ROLE_PERMISSIONS = {
     PERMISSIONS.USER_READ,
     PERMISSIONS.USER_UPDATE,
     PERMISSIONS.USER_DELETE,
+    PERMISSIONS.AUDIT_CREATE,
+    PERMISSIONS.AUDIT_READ,
+    PERMISSIONS.AUDIT_VERIFY,
+    PERMISSIONS.AUDIT_MANAGE,
     PERMISSIONS.DASHBOARD_ACCESS,
     PERMISSIONS.REPORTS_ACCESS,
   ],
   EMPLOYEE: [
     PERMISSIONS.ASSET_READ,
+    PERMISSIONS.AUDIT_READ,
     PERMISSIONS.DASHBOARD_ACCESS,
   ]
 }

@@ -69,6 +69,28 @@ enum AuditVerification {
   VERIFIED
   MISSING
   DAMAGED
+  NOT_FOUND
+}
+
+enum AuditStatus {
+  PLANNED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum DiscrepancySeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum DiscrepancyStatus {
+  OPEN
+  INVESTIGATING
+  RESOLVED
+  CLOSED
 }
 
 enum NotificationType {
@@ -260,18 +282,26 @@ model MaintenanceRequest {
 }
 
 model AuditCycle {
-  id           String      @id @default(uuid())
+  id           String            @id @default(uuid())
   name         String
   departmentId String
-  department   Department  @relation(fields: [departmentId], references: [id])
+  department   Department        @relation(fields: [departmentId], references: [id])
+  status       AuditStatus       @default(PLANNED)
   startDate    DateTime
   endDate      DateTime
-  isClosed     Boolean     @default(false)
+  startedAt    DateTime?
+  completedAt  DateTime?
+  isClosed     Boolean           @default(false)
   auditorNames String
+  summary      String?
   items        AuditItem[]
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  discrepancies AuditDiscrepancy[]
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
   deletedAt    DateTime?
+
+  @@index([status])
+  @@index([departmentId])
 }
 
 model AuditItem {
@@ -281,10 +311,38 @@ model AuditItem {
   assetId          String
   asset            Asset             @relation(fields: [assetId], references: [id])
   expectedLocation String
-  verification     AuditVerification
+  actualLocation   String?
+  verification     AuditVerification?
+  remarks          String?
+  verifiedAt       DateTime?
+  verifiedById     String?
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
   deletedAt        DateTime?
+
+  @@index([auditCycleId])
+  @@index([assetId])
+}
+
+model AuditDiscrepancy {
+  id             String               @id @default(uuid())
+  auditCycleId   String
+  auditCycle     AuditCycle           @relation(fields: [auditCycleId], references: [id])
+  auditItemId    String?
+  assetId        String?
+  type           String               // MISSING_ASSET, DAMAGED_ASSET, INCORRECT_LOCATION, WRONG_ASSIGNEE
+  severity       DiscrepancySeverity  @default(MEDIUM)
+  status         DiscrepancyStatus    @default(OPEN)
+  description    String
+  resolution     String?
+  resolvedAt     DateTime?
+  resolvedById   String?
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  deletedAt      DateTime?
+
+  @@index([auditCycleId])
+  @@index([status])
 }
 
 model ActivityLog {

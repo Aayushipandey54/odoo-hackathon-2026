@@ -1,12 +1,14 @@
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Settings, Package, ArrowRightLeft, CalendarClock, Wrench, ShieldCheck, PieChart, Bell, LogOut } from 'lucide-react'
+import { LayoutDashboard, Settings, Package, ArrowRightLeft, CalendarClock, Wrench, ShieldCheck, PieChart, Bell, LogOut, Sun, Moon } from 'lucide-react'
 import { cn } from '../utils/cn'
 import { useAuth } from '../store/AuthContext'
+import { useTheme } from '../hooks/useTheme'
 
 export default function AppLayout() {
   const location = useLocation()
   const navigate = useNavigate()
   const { logout } = useAuth()
+  const { isDark, toggleTheme } = useTheme()
   
   const navItems = [
     { label: 'Dashboard', path: '/app/dashboard', icon: LayoutDashboard },
@@ -21,9 +23,9 @@ export default function AppLayout() {
   ]
 
   return (
-    <div className="flex h-screen bg-black text-white overflow-hidden font-satoshi">
+    <div className="flex h-screen bg-background text-foreground overflow-hidden font-satoshi">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-white/10 flex flex-col pt-6 pb-4">
+      <aside className="w-64 border-r border-border flex flex-col pt-6 pb-4">
         <div className="px-6 mb-8">
           <h1 className="text-xl font-bold tracking-tight">AssetFlow</h1>
         </div>
@@ -39,8 +41,8 @@ export default function AppLayout() {
                 className={cn(
                   "flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200 border",
                   isActive 
-                    ? "bg-white/10 border-white/20 font-medium text-white shadow-premium" 
-                    : "border-transparent text-white/60 hover:text-white hover:bg-white/5"
+                    ? "bg-primary/10 border-primary/20 font-medium text-primary shadow-sm" 
+                    : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
               >
                 <Icon className="w-4 h-4" />
@@ -50,13 +52,21 @@ export default function AppLayout() {
           })}
         </nav>
 
-        <div className="px-4 mt-auto">
+        <div className="px-4 mt-auto space-y-2">
+          <button
+            onClick={toggleTheme}
+            className="flex items-center gap-3 px-4 py-2 w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {isDark ? 'Light Mode' : 'Dark Mode'}
+          </button>
+          
           <button 
             onClick={() => {
               logout()
               navigate('/login')
             }}
-            className="flex items-center gap-3 px-4 py-2 w-full text-sm text-white/50 hover:text-white transition-colors"
+            className="flex items-center gap-3 px-4 py-2 w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <LogOut className="w-4 h-4" />
             Logout
@@ -65,8 +75,9 @@ export default function AppLayout() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto bg-[#0a0a0a]">
-        <div className="max-w-6xl mx-auto p-8 h-full">
+      <main className="flex-1 overflow-y-auto bg-background relative">
+        <div className="absolute inset-0 bg-matrix pointer-events-none opacity-80"></div>
+        <div className="max-w-6xl mx-auto p-8 h-full relative z-10">
           <Outlet />
         </div>
       </main>

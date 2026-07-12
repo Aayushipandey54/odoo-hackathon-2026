@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ThemeProvider } from './store/ThemeContext'
 import { AuthProvider } from './store/AuthContext'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import AppLayout from './layouts/AppLayout'
 import Toast from './components/ui/Toast'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -18,6 +19,8 @@ import MaintenancePage from './pages/app/MaintenancePage'
 import AuditPage from './pages/app/AuditPage'
 import ReportsPage from './pages/app/ReportsPage'
 import NotificationsPage from './pages/app/NotificationsPage'
+
+const queryClient = new QueryClient()
 
 const AppContent = () => {
   return (
@@ -53,14 +56,16 @@ const AppContent = () => {
 function App() {
   return (
     <ErrorBoundary>
-      <BrowserRouter>
-        <ThemeProvider>
-          <AuthProvider>
-            <Toast />
-            <AppContent />
-          </AuthProvider>
-        </ThemeProvider>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <AuthProvider>
+              <Toast />
+              <AppContent />
+            </AuthProvider>
+          </ThemeProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
     </ErrorBoundary>
   )
 }

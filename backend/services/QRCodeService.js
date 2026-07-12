@@ -1,4 +1,6 @@
-import QRCode from 'qrcode'
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+const QRCode = require('qrcode')
 import path from 'path'
 import { fileURLToPath } from 'url'
 import fs from 'fs/promises'

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Card, CardHeader, CardBody } from '../../components/ui/Card'
 import Button from '../../components/ui/Button'
-import { CalendarClock, AlertTriangle } from 'lucide-react'
+import { CalendarClock, AlertTriangle, Plus } from 'lucide-react'
 import { cn } from '../../utils/cn'
+import toast from 'react-hot-toast'
 
 export default function BookingsPage() {
   const timeSlots = ['9:00', '10:00', '11:00', '12:00', '1:00']
@@ -12,15 +13,15 @@ export default function BookingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white mb-1">Resource Booking</h1>
-        <p className="text-neutral-400 text-sm">Schedule shared resources and meeting rooms</p>
+        <h1 className="text-2xl font-bold text-foreground mb-1">Resource Booking</h1>
+        <p className="text-muted-foreground text-sm">Schedule shared resources and meeting rooms</p>
       </div>
 
-      <Card className="bg-[#111111] border-white/10 max-w-3xl">
-        <CardHeader className="border-b border-white/10 pb-4 pt-5 px-6">
+      <Card className="bg-card border-border max-w-3xl">
+        <CardHeader className="border-b border-border pb-4 pt-5 px-6">
           <div className="flex flex-col gap-1.5 w-full md:w-1/2">
-            <label className="text-sm font-medium text-neutral-300">Resource & Date</label>
-            <select className="bg-[#0a0a0a] border border-white/10 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-white/30 font-medium">
+            <label className="text-sm font-medium text-secondary-foreground">Resource & Date</label>
+            <select className="bg-background border border-border rounded-lg p-2.5 text-sm text-foreground focus:outline-none focus:border-border-strong font-medium">
               <option>Conference Room B2 – Tue, 7 Jul</option>
             </select>
           </div>
@@ -29,17 +30,17 @@ export default function BookingsPage() {
         <CardBody className="px-6 py-8">
           
           {/* Timeline View */}
-          <div className="relative border-l-2 border-white/10 ml-16 pb-8 space-y-12">
+          <div className="relative border-l-2 border-border ml-16 pb-8 space-y-12">
             
             {timeSlots.map((time) => (
               <div key={time} className="relative">
                 {/* Time Label */}
-                <div className="absolute -left-16 top-0 w-12 text-right text-xs font-semibold text-neutral-400 -mt-1.5">
+                <div className="absolute -left-16 top-0 w-12 text-right text-xs font-semibold text-muted-foreground -mt-1.5">
                   {time}
                 </div>
                 
                 {/* Tick mark */}
-                <div className="absolute -left-[9px] top-0 w-4 h-0.5 bg-white/20" />
+                <div className="absolute -left-[9px] top-0 w-4 h-0.5 bg-border" />
                 
                 {/* Slot Content */}
                 {time === '9:00' && (
@@ -56,13 +57,13 @@ export default function BookingsPage() {
                 )}
 
                 {/* Empty dotted guide line for other slots */}
-                <div className="border-t border-dashed border-white/5 ml-6 mt-1.5 w-full" />
+                <div className="border-t border-dashed border-border ml-6 mt-1.5 w-full" />
               </div>
             ))}
           </div>
 
-          <div className="mt-8 border-t border-white/10 pt-6">
-            <Button variant="primary" className="w-full sm:w-auto">
+          <div className="mt-8 border-t border-border pt-6">
+            <Button variant="primary" className="w-full sm:w-auto" onClick={() => toast.success('Slot booked successfully!')}>
               <CalendarClock className="w-4 h-4 mr-2" /> Book a Slot
             </Button>
           </div>

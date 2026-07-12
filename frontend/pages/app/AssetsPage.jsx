@@ -58,8 +58,8 @@ export default function AssetsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white mb-1">Asset Directory</h1>
-          <p className="text-neutral-400 text-sm">Manage all company assets and equipment</p>
+          <h1 className="text-2xl font-bold text-foreground mb-1">Asset Directory</h1>
+          <p className="text-muted-foreground text-sm">Manage all company assets and equipment</p>
         </div>
 
         <Button
@@ -74,20 +74,20 @@ export default function AssetsPage() {
       {/* Search & Filter */}
       <div className="flex items-center gap-3 flex-wrap">
         <div className="relative flex-1 min-w-64">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search by name, tag, serial number..."
             value={searchTerm}
             onChange={(e) => handleSearch(e.target.value)}
-            className="w-full bg-[#111111] border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white focus:outline-none focus:border-white/30 transition-colors"
+            className="w-full bg-background border border-border rounded-lg pl-9 pr-4 py-2 text-sm text-foreground focus:outline-none focus:border-border-strong transition-colors"
           />
         </div>
         <AssetFilters onApplyFilters={handleApplyFilters} />
       </div>
 
       {/* Results Count */}
-      <div className="text-sm text-neutral-400">
+      <div className="text-sm text-muted-foreground">
         {isLoading ? (
           'Loading assets...'
         ) : (
@@ -96,7 +96,7 @@ export default function AssetsPage() {
       </div>
 
       {/* Table Card */}
-      <Card className="flex-1 bg-[#111111] border-white/10 overflow-hidden flex flex-col">
+      <Card className="flex-1 bg-card border-border overflow-hidden flex flex-col">
         {isLoading ? (
           <div className="flex items-center justify-center py-12">
             <Loader className="w-8 h-8 text-[#00F5FF] animate-spin" />
@@ -106,7 +106,7 @@ export default function AssetsPage() {
             Failed to load assets. Please try again.
           </div>
         ) : assets.length === 0 ? (
-          <div className="p-6 text-center text-neutral-400">
+          <div className="p-6 text-center text-muted-foreground">
             No assets found. Create your first asset!
           </div>
         ) : (
@@ -114,33 +114,33 @@ export default function AssetsPage() {
             <div className="overflow-x-auto flex-1">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-white/10 bg-white/[0.02]">
-                    <th className="p-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider">Asset ID & Name</th>
-                    <th className="p-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider">Category</th>
-                    <th className="p-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider">Department</th>
-                    <th className="p-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider">Status</th>
-                    <th className="p-4 text-xs font-semibold text-neutral-400 uppercase tracking-wider text-right">Actions</th>
+                  <tr className="border-b border-border bg-muted/20">
+                    <th className="p-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Asset ID & Name</th>
+                    <th className="p-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Category</th>
+                    <th className="p-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Department</th>
+                    <th className="p-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Status</th>
+                    <th className="p-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5">
+                <tbody className="divide-y divide-border">
                   {assets.map((asset) => (
-                    <tr key={asset.id} className="hover:bg-white/[0.02] transition-colors group">
+                    <tr key={asset.id} className="hover:bg-muted/50 transition-colors group">
                       <td className="p-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-neutral-400">
+                          <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground">
                             <Package className="w-5 h-5" />
                           </div>
                           <div>
-                            <p className="font-semibold text-white">{asset.name}</p>
-                            <p className="text-xs text-neutral-500">{asset.assetNumber}</p>
+                            <p className="font-semibold text-foreground">{asset.name}</p>
+                            <p className="text-xs text-muted-foreground">{asset.assetNumber}</p>
                           </div>
                         </div>
                       </td>
                       <td className="p-4">
-                        <span className="text-sm text-neutral-300">{asset.category?.name}</span>
+                        <span className="text-sm text-secondary-foreground">{asset.category?.name}</span>
                       </td>
                       <td className="p-4">
-                        <span className="text-sm text-neutral-300">{asset.department?.name}</span>
+                        <span className="text-sm text-secondary-foreground">{asset.department?.name}</span>
                       </td>
                       <td className="p-4">
                         <AssetStatusBadge status={asset.status} />
@@ -149,21 +149,21 @@ export default function AssetsPage() {
                         <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                           <button
                             onClick={() => navigate(`/app/assets/${asset.id}`)}
-                            className="p-2 hover:bg-white/10 rounded transition-colors text-neutral-400 hover:text-white"
+                            className="p-2 hover:bg-muted rounded transition-colors text-muted-foreground hover:text-foreground"
                             title="View"
                           >
                             <Eye className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => navigate(`/app/assets/${asset.id}/edit`)}
-                            className="p-2 hover:bg-white/10 rounded transition-colors text-neutral-400 hover:text-[#0066FF]"
+                            className="p-2 hover:bg-muted rounded transition-colors text-muted-foreground hover:text-[#0066FF]"
                             title="Edit"
                           >
                             <Edit className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => handleDelete(asset.id)}
-                            className="p-2 hover:bg-white/10 rounded transition-colors text-neutral-400 hover:text-red-500"
+                            className="p-2 hover:bg-muted rounded transition-colors text-muted-foreground hover:text-red-500"
                             title="Delete"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -178,8 +178,8 @@ export default function AssetsPage() {
 
             {/* Pagination */}
             {total > pagination.limit && (
-              <div className="border-t border-white/10 p-4 flex items-center justify-between">
-                <span className="text-sm text-neutral-400">
+              <div className="border-t border-border p-4 flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">
                   Page {Math.floor(pagination.offset / pagination.limit) + 1}
                 </span>
                 <div className="flex gap-2">

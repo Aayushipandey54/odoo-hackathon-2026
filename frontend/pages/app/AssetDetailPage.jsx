@@ -104,13 +104,13 @@ export default function AssetDetailPage() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/app/assets')}
-            className="p-2 hover:bg-white/10 rounded transition-colors"
+            className="p-2 hover:bg-muted rounded transition-colors"
           >
-            <ArrowLeft className="w-5 h-5 text-neutral-400 hover:text-white" />
+            <ArrowLeft className="w-5 h-5 text-muted-foreground hover:text-foreground" />
           </button>
           <div>
-            <h1 className="text-2xl font-bold text-white">{asset.name}</h1>
-            <p className="text-neutral-400 text-sm">{asset.assetNumber}</p>
+            <h1 className="text-2xl font-bold text-foreground">{asset.name}</h1>
+            <p className="text-muted-foreground text-sm">{asset.assetNumber}</p>
           </div>
         </div>
 
@@ -127,7 +127,7 @@ export default function AssetDetailPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column: Asset Details */}
         <div className="lg:col-span-2 space-y-6">
-          <Card className="bg-[#111111] border-white/10 p-6">
+          <Card className="bg-card border-border p-6">
             <AssetDetailCard
               asset={asset}
               onDeleteImage={(imageId) => deleteImageMutation.mutate(imageId)}
@@ -138,13 +138,13 @@ export default function AssetDetailPage() {
           </Card>
 
           {/* Image Upload Section */}
-          <Card className="bg-[#111111] border-white/10 p-6">
+          <Card className="bg-card border-border p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-white">Upload Image</h3>
+              <h3 className="text-lg font-semibold text-foreground">Upload Image</h3>
               {showImageUpload && (
                 <button
                   onClick={() => setShowImageUpload(false)}
-                  className="text-sm text-neutral-400 hover:text-white"
+                  className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   Close
                 </button>
@@ -170,13 +170,13 @@ export default function AssetDetailPage() {
           </Card>
 
           {/* Document Upload Section */}
-          <Card className="bg-[#111111] border-white/10 p-6">
+          <Card className="bg-card border-border p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-white">Upload Document</h3>
+              <h3 className="text-lg font-semibold text-foreground">Upload Document</h3>
               {showDocUpload && (
                 <button
                   onClick={() => setShowDocUpload(false)}
-                  className="text-sm text-neutral-400 hover:text-white"
+                  className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   Close
                 </button>
@@ -202,8 +202,8 @@ export default function AssetDetailPage() {
           </Card>
 
           {/* Timeline */}
-          <Card className="bg-[#111111] border-white/10 p-6">
-            <h3 className="text-lg font-semibold text-white mb-4">Asset Timeline</h3>
+          <Card className="bg-card border-border p-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">Asset Timeline</h3>
             <AssetTimeline assetId={id} />
           </Card>
         </div>
@@ -211,8 +211,8 @@ export default function AssetDetailPage() {
         {/* Right Column: QR Code & Info */}
         <div className="space-y-6">
           {/* QR Code */}
-          <Card className="bg-[#111111] border-white/10 p-6">
-            <h3 className="text-lg font-semibold text-white mb-4">QR Code</h3>
+          <Card className="bg-card border-border p-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">QR Code</h3>
             {asset.qrCode && (
               <QRCodeViewer
                 qrCode={asset.qrCode}
@@ -224,20 +224,20 @@ export default function AssetDetailPage() {
           </Card>
 
           {/* Quick Stats */}
-          <Card className="bg-[#111111] border-white/10 p-6">
-            <h3 className="text-lg font-semibold text-white mb-4">Quick Info</h3>
+          <Card className="bg-card border-border p-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">Quick Info</h3>
             <div className="space-y-3">
-              <div className="pb-3 border-b border-white/10">
-                <p className="text-xs text-neutral-500 uppercase">Images</p>
-                <p className="text-2xl font-bold text-white">{asset.images?.length || 0}</p>
+              <div className="pb-3 border-b border-border">
+                <p className="text-xs text-muted-foreground uppercase">Images</p>
+                <p className="text-2xl font-bold text-foreground">{asset.images?.length || 0}</p>
               </div>
-              <div className="pb-3 border-b border-white/10">
-                <p className="text-xs text-neutral-500 uppercase">Documents</p>
-                <p className="text-2xl font-bold text-white">{asset.documents?.length || 0}</p>
+              <div className="pb-3 border-b border-border">
+                <p className="text-xs text-muted-foreground uppercase">Documents</p>
+                <p className="text-2xl font-bold text-foreground">{asset.documents?.length || 0}</p>
               </div>
               <div>
-                <p className="text-xs text-neutral-500 uppercase">Timeline Events</p>
-                <p className="text-2xl font-bold text-white">{asset.timeline?.length || 0}</p>
+                <p className="text-xs text-muted-foreground uppercase">Timeline Events</p>
+                <p className="text-2xl font-bold text-foreground">{asset.timeline?.length || 0}</p>
               </div>
             </div>
           </Card>
