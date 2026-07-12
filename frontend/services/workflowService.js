@@ -4,7 +4,7 @@
  * Handles allocation, transfer, return, and workflow history requests
  */
 
-import apiClient from './apiClient'
+import apiClient from './api'
 
 const API_BASE = '/api'
 
