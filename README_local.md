@@ -9,7 +9,7 @@ This is a monorepo containing a full-stack application.
 
 ### Prerequisites
 - Node.js
-- MongoDB
+- PostgreSQL (via Prisma)
 
 ### Installation
 1. Install dependencies for backend and frontend:
