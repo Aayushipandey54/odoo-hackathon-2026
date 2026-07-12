@@ -8,6 +8,14 @@ import ErrorBoundary from './components/ErrorBoundary'
 import HomePage from './pages/HomePage'
 
 import DashboardPage from './pages/app/DashboardPage'
+import OrganizationPage from './pages/app/OrganizationPage'
+import AssetsPage from './pages/app/AssetsPage'
+import AllocationsPage from './pages/app/AllocationsPage'
+import BookingsPage from './pages/app/BookingsPage'
+import MaintenancePage from './pages/app/MaintenancePage'
+import AuditPage from './pages/app/AuditPage'
+import ReportsPage from './pages/app/ReportsPage'
+import NotificationsPage from './pages/app/NotificationsPage'
 
 // New app placeholder pages (we'll replace these with real pages next)
 const Placeholder = ({ name }) => <div className="text-white h-full flex items-center justify-center text-2xl font-bold opacity-30">{name}</div>
@@ -23,14 +31,14 @@ const AppContent = () => {
       <Route path="/app" element={<AppLayout />}>
         <Route index element={<Navigate to="/app/dashboard" replace />} />
         <Route path="dashboard" element={<DashboardPage />} />
-        <Route path="organization" element={<Placeholder name="Organization setup" />} />
-        <Route path="assets" element={<Placeholder name="Assets" />} />
-        <Route path="allocations" element={<Placeholder name="Allocation & Transfer" />} />
-        <Route path="bookings" element={<Placeholder name="Resource Booking" />} />
-        <Route path="maintenance" element={<Placeholder name="Maintenance" />} />
-        <Route path="audit" element={<Placeholder name="Audit" />} />
-        <Route path="reports" element={<Placeholder name="Reports" />} />
-        <Route path="notifications" element={<Placeholder name="Notifications" />} />
+        <Route path="organization" element={<OrganizationPage />} />
+        <Route path="assets" element={<AssetsPage />} />
+        <Route path="allocations" element={<AllocationsPage />} />
+        <Route path="bookings" element={<BookingsPage />} />
+        <Route path="maintenance" element={<MaintenancePage />} />
+        <Route path="audit" element={<AuditPage />} />
+        <Route path="reports" element={<ReportsPage />} />
+        <Route path="notifications" element={<NotificationsPage />} />
       </Route>
 
       {/* Fallback route */}
