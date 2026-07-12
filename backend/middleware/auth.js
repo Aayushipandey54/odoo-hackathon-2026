@@ -2,20 +2,46 @@ import jwt from 'jsonwebtoken'
 import config from '../config/index.js'
 import { UnauthorizedError } from '../utils/errors.js'
 import { hasPermission } from './permissions.js'
+import { prisma } from '../core/connection.js'
 
 /**
- * Validates the JWT Access token in the Authorization header.
- * Attaches the decoded user payload to req.user.
+ * Validates the JWT Access token or dummy simulator token in the Authorization header.
+ * Attaches the database user payload to req.user.
  */
-export const authenticate = (req, res, next) => {
+export const authenticate = async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1]
   if (!token) {
     return next(new UnauthorizedError('No authentication token found'))
   }
 
+  // 1. Support dummy token for testing & Phase 8 simulator swapper
+  if (token.startsWith('dummy_token_')) {
+    try {
+      const userId = token.replace('dummy_token_', '')
+      const user = await prisma.user.findUnique({
+        where: { id: userId }
+      })
+      if (!user) {
+        return next(new UnauthorizedError('User not found for simulated token'))
+      }
+      req.user = user
+      return next()
+    } catch (err) {
+      return next(new UnauthorizedError('Error resolving simulated token'))
+    }
+  }
+
+  // 2. Standard JWT verification
   try {
     const decoded = jwt.verify(token, config.jwtAccessSecret)
-    req.user = decoded
+    const userId = decoded.id || decoded.userId
+    const user = await prisma.user.findUnique({
+      where: { id: userId }
+    })
+    if (!user) {
+      return next(new UnauthorizedError('User not found'))
+    }
+    req.user = user
     next()
   } catch (err) {
     if (err.name === 'TokenExpiredError') {
@@ -45,7 +71,23 @@ export const requirePermission = (requiredPermission) => {
   }
 }
 
+/**
+ * Validates if the authenticated user has the ADMIN (Asset Manager) role.
+ * Must be used AFTER authenticate middleware.
+ */
+export const requireAdmin = (req, res, next) => {
+  if (!req.user || req.user.role !== 'ADMIN') {
+    return next(new UnauthorizedError('Access denied: Requires Asset Manager (ADMIN) role'))
+  }
+  next()
+}
+
+// Export both default module and named imports for compatibility
+export const auth = authenticate
+
 export default {
   authenticate,
-  requirePermission
+  auth,
+  requirePermission,
+  requireAdmin
 }

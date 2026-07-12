@@ -1,10 +1,12 @@
 generator client {
-  provider   = "prisma-client-js"
-  engineType = "library"
+  provider      = "prisma-client-js"
+  engineType    = "library"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // =======================
@@ -25,6 +27,7 @@ enum AssetStatus {
   AVAILABLE
   ALLOCATED
   MAINTENANCE
+  UNDER_MAINTENANCE
   RETIRED
   DISPOSED
 }
@@ -44,18 +47,21 @@ enum TransferStatus {
 }
 
 enum BookingStatus {
-  CONFIRMED
   PENDING
+  CONFIRMED
   CANCELLED
   COMPLETED
+  REJECTED
 }
 
 enum MaintenanceStatus {
   PENDING
   APPROVED
+  REJECTED
   TECHNICIAN_ASSIGNED
   IN_PROGRESS
   RESOLVED
+  CLOSED
 }
 
 enum MaintenancePriority {
@@ -131,6 +137,7 @@ model Department {
   employees Employee[]
   assets    Asset[]
   audits    AuditCycle[]
+  resources Resource[]
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
   deletedAt DateTime?
@@ -225,6 +232,9 @@ model AssetAllocation {
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt
   deletedAt         DateTime?
+  
+  @@index([assetId, returnedAt])
+  @@index([employeeId, returnedAt])
 }
 
 model TransferRequest {
@@ -237,48 +247,85 @@ model TransferRequest {
   toEmployee     Employee       @relation("TransferTo", fields: [toEmployeeId], references: [id])
   reason         String?
   status         TransferStatus @default(PENDING)
+  approvedAt     DateTime?
+  approvedBy     String?
+  rejectedAt     DateTime?
+  rejectedBy     String?
+  rejectionReason String?
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
   deletedAt      DateTime?
+  
+  @@index([status])
+  @@index([fromEmployeeId])
+  @@index([toEmployeeId])
+  @@index([assetId])
 }
 
 model Resource {
-  id        String            @id @default(uuid())
-  name      String
-  type      String // e.g., "Conference Room", "Van"
-  bookings  ResourceBooking[]
-  createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
-  deletedAt DateTime?
+  id                 String            @id @default(uuid())
+  name               String
+  type               String            // e.g., "Conference Room", "Van"
+  description        String?
+  departmentId       String?
+  department         Department?       @relation(fields: [departmentId], references: [id])
+  capacity           Int?              // Max concurrent bookings (null = 1)
+  isActive           Boolean           @default(true)
+  requiresApproval   Boolean           @default(false)
+  bookings           ResourceBooking[]
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  deletedAt          DateTime?
+
+  @@index([type])
+  @@index([departmentId])
+  @@index([isActive])
 }
 
 model ResourceBooking {
-  id         String        @id @default(uuid())
-  resourceId String
-  resource   Resource      @relation(fields: [resourceId], references: [id])
-  employeeId String
-  employee   Employee      @relation(fields: [employeeId], references: [id])
-  startTime  DateTime
-  endTime    DateTime
-  status     BookingStatus @default(PENDING)
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
-  deletedAt  DateTime?
+  id                  String        @id @default(uuid())
+  resourceId          String
+  resource            Resource      @relation(fields: [resourceId], references: [id])
+  employeeId          String
+  employee            Employee      @relation(fields: [employeeId], references: [id])
+  startTime           DateTime
+  endTime             DateTime
+  purpose             String?
+  status              BookingStatus @default(PENDING)
+  approvedBy          String?
+  approvedAt          DateTime?
+  cancelledBy         String?
+  cancelledAt         DateTime?
+  cancellationReason  String?
+  createdBy           String
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  deletedAt           DateTime?
+
+  @@index([resourceId, status])
+  @@index([employeeId])
+  @@index([startTime, endTime])
+  @@index([status])
 }
 
 model MaintenanceRequest {
-  id           String              @id @default(uuid())
-  assetId      String
-  asset        Asset               @relation(fields: [assetId], references: [id])
-  issue        String
-  status       MaintenanceStatus   @default(PENDING)
-  priority     MaintenancePriority @default(MEDIUM)
-  technicianId String?
-  technician   Employee?           @relation("Technician", fields: [technicianId], references: [id])
-  resolvedAt   DateTime?
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
-  deletedAt    DateTime?
+  id                String               @id @default(uuid())
+  assetId           String
+  asset             Asset                @relation(fields: [assetId], references: [id])
+  issue             String
+  status            MaintenanceStatus    @default(PENDING)
+  priority          MaintenancePriority  @default(MEDIUM)
+  technicianId      String?
+  technician        Employee?            @relation("Technician", fields: [technicianId], references: [id])
+  assignedDate      DateTime?
+  repairNotes       String?
+  resolutionSummary String?
+  attachments       String?
+  history           MaintenanceHistory[]
+  resolvedAt        DateTime?
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  deletedAt         DateTime?
 }
 
 model AuditCycle {
@@ -434,4 +481,16 @@ model AssetTimeline {
   
   @@index([assetId])
   @@index([assetId, createdAt])
+}
+
+model MaintenanceHistory {
+  id             String             @id @default(uuid())
+  requestId      String
+  request        MaintenanceRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  timestamp      DateTime           @default(now())
+  performedBy    String
+  previousStatus MaintenanceStatus?
+  newStatus      MaintenanceStatus
+  remarks        String?
+  createdAt      DateTime           @default(now())
 }

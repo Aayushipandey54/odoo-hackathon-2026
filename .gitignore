@@ -32,6 +32,7 @@ docker-compose.override.yml
 # Custom
 .agents/
 graphify/
+graphify-out/
 
 # Markdown
 /*.md
