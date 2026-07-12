@@ -1,5 +1,5 @@
 /**
- * Testimonial review data for Synapse landing page.
+ * Testimonial review data for AssetFlow landing page.
  * Each testimonial references real enterprise product features.
  */
 
@@ -9,7 +9,7 @@ export const TESTIMONIALS_ROW_1 = [
     role: 'Operations Lead',
     institution: 'Velo Tech',
     review:
-      'The analytics dashboard gives us a clear picture of our pipelines. We can track process latency, see bottlenecks, and optimize resource usage. Synapse made operations strategic instead of chaotic.',
+      'The analytics dashboard gives us a clear picture of our pipelines. We can track process latency, see bottlenecks, and optimize resource usage. AssetFlow made operations strategic instead of chaotic.',
     avatar: null,
   },
   {
@@ -17,7 +17,7 @@ export const TESTIMONIALS_ROW_1 = [
     role: 'AI Engineer',
     institution: 'Apex AI Labs',
     review:
-      'Resource management used to consume our mornings. Now we open Synapse, see every active pipeline, workload distribution, and execution log in one view. The AI insights on workflow health help us scale proactively.',
+      'Resource management used to consume our mornings. Now we open AssetFlow, see every active pipeline, workload distribution, and execution log in one view. The AI insights on workflow health help us scale proactively.',
     avatar: null,
   },
   {
@@ -25,7 +25,7 @@ export const TESTIMONIALS_ROW_1 = [
     role: 'CTO',
     institution: 'Octane SaaS',
     review:
-      'We rolled out Synapse across 12 product divisions. The notification routing module alone saved us hundreds of hours per release. Systems get real-time alerts, engineers get debug context, and I get the metrics I need.',
+      'We rolled out AssetFlow across 12 product divisions. The notification routing module alone saved us hundreds of hours per release. Systems get real-time alerts, engineers get debug context, and I get the metrics I need.',
     avatar: null,
   },
   {
@@ -33,7 +33,7 @@ export const TESTIMONIALS_ROW_1 = [
     role: 'Product Manager',
     institution: 'CloudFlow Solutions',
     review:
-      'Workflow scheduling conflicts used to be a weekly nightmare. Synapse schedule optimization engine eliminated clashes and resource locks automatically. Our planning coordination meetings dropped from weekly to monthly.',
+      'Workflow scheduling conflicts used to be a weekly nightmare. AssetFlow schedule optimization engine eliminated clashes and resource locks automatically. Our planning coordination meetings dropped from weekly to monthly.',
     avatar: null,
   },
   {
@@ -41,7 +41,7 @@ export const TESTIMONIALS_ROW_1 = [
     role: 'Founder',
     institution: 'Joshi Global',
     review:
-      'I run a high-volume fintech platform. Before Synapse, we had five different tools for log monitoring, API testing, notification routes, and reports. Now it is one dashboard. Operational costs dropped by 40%.',
+      'I run a high-volume fintech platform. Before AssetFlow, we had five different tools for log monitoring, API testing, notification routes, and reports. Now it is one dashboard. Operational costs dropped by 40%.',
     avatar: null,
   },
   {
@@ -60,7 +60,7 @@ export const TESTIMONIALS_ROW_2 = [
     role: 'Platform Lead',
     institution: 'IMS Enterprise',
     review:
-      'Tracking deployment readiness across environments was manual and error-prone. Synapse analytics gives us real-time cohort performance data. Our team’s overall delivery rate improved measurably within one month.',
+      'Tracking deployment readiness across environments was manual and error-prone. AssetFlow analytics gives us real-time cohort performance data. Our team’s overall delivery rate improved measurably within one month.',
     avatar: null,
   },
   {
@@ -84,7 +84,7 @@ export const TESTIMONIALS_ROW_2 = [
     role: 'Operations Lead',
     institution: 'Brilliant Systems',
     review:
-      'Billing reconciliation was our biggest pain point. Partial collections, customer usage reminders, billing generation—all manual. Synapse automated the entire flow. We went from 30% overdue invoices to under 5%.',
+      'Billing reconciliation was our biggest pain point. Partial collections, customer usage reminders, billing generation—all manual. AssetFlow automated the entire flow. We went from 30% overdue invoices to under 5%.',
     avatar: null,
   },
   {
@@ -100,7 +100,7 @@ export const TESTIMONIALS_ROW_2 = [
     role: 'Platform Lead',
     institution: 'Time Tech Group',
     review:
-      'API routing across multiple cloud networks was our challenge. Synapse gave us a centralized view with granular control. Integrations, analytics, communication—everything flows through one system now.',
+      'API routing across multiple cloud networks was our challenge. AssetFlow gave us a centralized view with granular control. Integrations, analytics, communication—everything flows through one system now.',
     avatar: null,
   },
 ]

@@ -178,7 +178,7 @@ const AIVisualization = () => {
               <span className={`text-sm font-semibold uppercase tracking-widest text-[10px] ${isDark ? 'text-white/60' : 'text-black/60'}`}>Neural AI Engine</span>
             </div>
             <h2 className={`text-4xl md:text-5xl font-black mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Synapse AI Thinks{' '}
+              AssetFlow AI Thinks{' '}
               <span className="text-gradient">Like Your Best Engineer</span>
             </h2>
             <p className={`text-lg leading-relaxed mb-8 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>

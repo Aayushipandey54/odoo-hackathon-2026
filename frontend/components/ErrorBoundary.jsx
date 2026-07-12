@@ -11,7 +11,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error('Synapse Error Boundary caught:', error, errorInfo)
+    console.error('AssetFlow Error Boundary caught:', error, errorInfo)
   }
 
   render() {
@@ -31,7 +31,7 @@ class ErrorBoundary extends React.Component {
             onClick={() => window.location.reload()}
             className="px-6 py-3 bg-white text-black font-bold rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
-            Refresh Synapse
+            Refresh AssetFlow
           </button>
           {import.meta.env.DEV && (
              <div className="mt-8 p-4 bg-black/40 rounded-lg text-left overflow-auto max-w-2xl border border-[var(--border-subtle)]">

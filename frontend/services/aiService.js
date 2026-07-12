@@ -6,7 +6,7 @@ const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 const GROQ_MODEL = 'llama-3.3-70b-versatile'
 const GROQ_FALLBACK_MODEL = 'llama-3.1-8b-instant'
 
-const SYSTEM_PROMPT = `You are Synapse AI, an advanced enterprise workflow assistant integrated into an operational management platform.
+const SYSTEM_PROMPT = `You are AssetFlow AI, an advanced enterprise workflow assistant integrated into an operational management platform.
 
 You assist developers, operations teams, and executives with highly structured, context-aware, and actionable responses.
 
@@ -73,13 +73,13 @@ All business unit parameters are in normal bounds.
 
   // Default: developers role
   if (q.includes('deploy') || q.includes('workflow')) {
-    return `## Deploying Workflows in Synapse
+    return `## Deploying Workflows in AssetFlow
 
 Deploy a workflow via CLI or the pipeline interface:
 
-*   **Step 1:** Define the workflow in \`synapse.yaml\`
-*   **Step 2:** Test logic in the local sandbox: \`synapse dev\`
-*   **Step 3:** Deploy to cluster: \`synapse deploy\`
+*   **Step 1:** Define the workflow in \`assetflow.yaml\`
+*   **Step 2:** Test logic in the local sandbox: \`assetflow dev\`
+*   **Step 3:** Deploy to cluster: \`assetflow deploy\`
 
 ### Next Steps
 Monitor the deployment live in the *Deployment Analytics* dashboard.`;
@@ -89,8 +89,8 @@ Monitor the deployment live in the *Deployment Analytics* dashboard.`;
 
 Use our isolated sandbox container to run integrations:
 
-1.  Initialize mock environment: \`synapse sandbox init\`
-2.  Simulate events: \`synapse sandbox trigger <event-id>\`
+1.  Initialize mock environment: \`assetflow sandbox init\`
+2.  Simulate events: \`assetflow sandbox trigger <event-id>\`
 3.  Review logs on local port \`8080\`.`;
   }
   if (q.includes('schema') || q.includes('api') || q.includes('error')) {
@@ -109,7 +109,7 @@ As a developer, you have access to:
 Here is a quick concept resolution:
 
 1.  **Core Idea:** Enterprise systems perform best when structured. Fragmentation leads to friction.
-2.  **Application:** Use **Synapse** modules (such as Workflow Builder, Notification Routing, and Sandbox Integrations) to organize your automation stack.
+2.  **Application:** Use **AssetFlow** modules (such as Workflow Builder, Notification Routing, and Sandbox Integrations) to organize your automation stack.
 3.  **Next Step:** Check out the *Features* or *Pricing* pages to get started with an active workspace setup.`;
 };
 

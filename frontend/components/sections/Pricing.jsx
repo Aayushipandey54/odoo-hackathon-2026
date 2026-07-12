@@ -28,7 +28,7 @@ const plans = [
     icon: Star,
     price: '₹7,499',
     period: '/month',
-    desc: 'The complete Synapse experience for growing organizations.',
+    desc: 'The complete AssetFlow experience for growing organizations.',
     highlights: 'Up to 1,000 active nodes',
     features: [
       'Workflow Builder (1,000 nodes)',
@@ -49,7 +49,7 @@ const plans = [
     icon: Building,
     price: 'Custom',
     period: '',
-    desc: 'Full-scale Synapse deployment for large enterprises and clusters.',
+    desc: 'Full-scale AssetFlow deployment for large enterprises and clusters.',
     highlights: 'Unlimited active nodes',
     features: [
       'Unlimited Nodes & Clusters',

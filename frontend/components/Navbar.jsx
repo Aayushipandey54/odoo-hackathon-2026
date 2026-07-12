@@ -90,7 +90,7 @@ const Navbar = () => {
         transition={{ duration: 0.16 }}
       >
         <Link to="/" className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>
-          Synapse
+          AssetFlow
         </Link>
       </motion.div>
 

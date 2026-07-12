@@ -3,7 +3,7 @@ import ApiResponse from '../utils/apiResponse.js'
 import AssetCategoryService from '../services/AssetCategoryService.js'
 
 export const getAllCategories = asyncHandler(async (req, res) => {
-  const result = await AssetCategoryService.getAll()
+  const result = await AssetCategoryService.getAll(req.query)
   res.status(200).json(new ApiResponse(200, result))
 })
 
