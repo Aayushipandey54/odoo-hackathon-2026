@@ -143,25 +143,52 @@ model Employee {
 
 model Asset {
   id              String               @id @default(uuid())
+  assetNumber     String               @unique  // AF-2026-0001
   tag             String               @unique
   name            String
+  serialNumber    String?              @unique  // Optional but unique if provided
+  manufacturer    String?
+  model           String?
+  description     String?
+  
   categoryId      String
   category        AssetCategory        @relation(fields: [categoryId], references: [id])
+  
   departmentId    String
   department      Department           @relation(fields: [departmentId], references: [id])
+  
+  locationId      String
+  location        Location             @relation(fields: [locationId], references: [id])
+  
   status          AssetStatus          @default(AVAILABLE)
   condition       AssetCondition       @default(NEW)
-  location        String?
+  
+  purchaseDate    DateTime?
+  purchaseCost    Decimal?             @db.Decimal(10, 2)
+  warrantyExpiry  DateTime?
+  
+  qrCode          String?              // Base64 or URL
+  
   assigneeId      String?
   currentAssignee Employee?            @relation("CurrentAssignee", fields: [assigneeId], references: [id])
+  
+  // Relations
+  images          AssetImage[]
+  documents       AssetDocument[]
+  timeline        AssetTimeline[]
   allocations     AssetAllocation[]
   transfers       TransferRequest[]
   maintenance     MaintenanceRequest[]
   auditItems      AuditItem[]
-  purchaseDate    DateTime?
+  
   createdAt       DateTime             @default(now())
   updatedAt       DateTime             @updatedAt
   deletedAt       DateTime?
+  
+  @@index([assetNumber])
+  @@index([tag])
+  @@index([serialNumber])
+  @@index([status])
 }
 
 model AssetAllocation {
@@ -281,4 +308,72 @@ model Notification {
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
   deletedAt DateTime?
+}
+
+model Location {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  address   String?
+  assets    Asset[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model OrganizationSettings {
+  id          String   @id @default("default")
+  companyName String
+  currency    String   @default("USD")
+  timezone    String   @default("UTC")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+}
+
+// ===== ASSET REGISTRY EXTENSIONS =====
+
+model AssetImage {
+  id        String   @id @default(uuid())
+  assetId   String
+  asset     Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  url       String   // File path or URL
+  filename  String
+  mimeType  String
+  size      Int      // bytes
+  isPrimary Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  
+  @@index([assetId])
+}
+
+model AssetDocument {
+  id           String   @id @default(uuid())
+  assetId      String
+  asset        Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  url          String
+  filename     String
+  mimeType     String
+  size         Int
+  documentType String   // 'MANUAL', 'WARRANTY', 'INVOICE', 'OTHER'
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  deletedAt    DateTime?
+  
+  @@index([assetId])
+}
+
+model AssetTimeline {
+  id          String   @id @default(uuid())
+  assetId     String
+  asset       Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  event       String   // ASSET_REGISTERED, IMAGE_UPLOADED, DOCUMENT_UPLOADED, etc.
+  description String
+  details     Json?    // Store structured change data
+  performedBy String?  // userId
+  createdAt   DateTime @default(now())
+  
+  @@index([assetId])
+  @@index([assetId, createdAt])
 }

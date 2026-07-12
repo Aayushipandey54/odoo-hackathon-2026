@@ -3,7 +3,7 @@ import ApiResponse from '../utils/apiResponse.js'
 import EmployeeService from '../services/EmployeeService.js'
 
 export const getAllEmployees = asyncHandler(async (req, res) => {
-  const result = await EmployeeService.getAll()
+  const result = await EmployeeService.getAll(req.query)
   res.status(200).json(new ApiResponse(200, result))
 })
 

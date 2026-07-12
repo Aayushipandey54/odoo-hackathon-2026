@@ -4,6 +4,8 @@ import authRouter from './auth.js'
 import departmentRouter from './departments.js'
 import employeeRouter from './employees.js'
 import assetCategoryRouter from './assetCategories.js'
+import locationRouter from './locations.js'
+import organizationRouter from './organization.js'
 import assetRouter from './assets.js'
 import allocationRouter from './allocations.js'
 import transferRouter from './transfers.js'
@@ -26,6 +28,8 @@ router.use('/auth', authRouter)
 router.use('/departments', departmentRouter)
 router.use('/employees', employeeRouter)
 router.use('/asset-categories', assetCategoryRouter)
+router.use('/locations', locationRouter)
+router.use('/organization', organizationRouter)
 router.use('/assets', assetRouter)
 router.use('/allocations', allocationRouter)
 router.use('/transfers', transferRouter)

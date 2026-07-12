@@ -1,10 +1,12 @@
 import DepartmentRepository from '../repositories/DepartmentRepository.js'
+import { buildQuery } from '../utils/queryBuilder.js'
 
 export class DepartmentService {
-  async getAll() {
-    return DepartmentRepository.findAll({}, { 
-      include: { parent: true, head: true } // Assuming we want basic relations if they exist
-    })
+  async getAll(queryParams = {}) {
+    const { where, options } = buildQuery(queryParams, ['name'])
+    // Merge include options
+    options.include = { ...options.include, parent: true, head: true }
+    return DepartmentRepository.findAll(where, options)
   }
 
   async create(data) {

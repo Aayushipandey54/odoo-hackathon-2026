@@ -1,10 +1,11 @@
 import EmployeeRepository from '../repositories/EmployeeRepository.js'
+import { buildQuery } from '../utils/queryBuilder.js'
 
 export class EmployeeService {
-  async getAll() {
-    return EmployeeRepository.findAll({}, {
-      include: { department: true }
-    })
+  async getAll(queryParams = {}) {
+    const { where, options } = buildQuery(queryParams, ['name'])
+    options.include = { ...options.include, department: true }
+    return EmployeeRepository.findAll(where, options)
   }
 
   async create(data) {
