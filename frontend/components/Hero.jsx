@@ -33,7 +33,7 @@ const Hero = () => {
           transition={{ duration: 0.7 }}
           className={`text-xs font-semibold tracking-[0.25em] uppercase mb-10 ${eyebrowColor}`}
         >
-          For Modern Enterprise Teams
+          Enterprise Asset Management
         </motion.p>
 
         {/* Main Headline */}
@@ -47,7 +47,7 @@ const Hero = () => {
             fontFamily: "'Playfair Display', Georgia, 'Times New Roman', serif",
           }}
         >
-          Architecting the
+          Master your
           <br />
           <span
             style={{
@@ -56,9 +56,9 @@ const Hero = () => {
               color: isDark ? '#ffffff' : '#111827',
             }}
           >
-            future
+            asset
           </span>{' '}
-          of work.
+          lifecycle.
         </motion.h1>
 
         {/* Quote subtitle */}
@@ -69,8 +69,7 @@ const Hero = () => {
           className={`text-base sm:text-lg leading-relaxed max-w-xl mb-14 ${quoteColor}`}
           style={{ fontStyle: 'italic' }}
         >
-          "Transforming operations through intelligence. The best systems are not managed—they are
-          engineered."
+          "The definitive ERP platform to track, allocate, and maintain resources across your entire organization."
         </motion.p>
 
         {/* CTA */}
@@ -105,7 +104,7 @@ const Hero = () => {
                 transition: 'all 0.2s ease',
               }}
             >
-              Start building
+              Access Dashboard
             </motion.span>
           </Link>
         </motion.div>

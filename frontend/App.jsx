@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ThemeProvider } from './store/ThemeContext'
+import { AuthProvider } from './store/AuthContext'
 import AppLayout from './layouts/AppLayout'
 import Toast from './components/ui/Toast'
 import ErrorBoundary from './components/ErrorBoundary'
+import ProtectedRoute from './components/ProtectedRoute'
 
 // Existing pages
 import HomePage from './pages/HomePage'
-
+import AuthPage from './pages/AuthPage'
 import DashboardPage from './pages/app/DashboardPage'
 import OrganizationPage from './pages/app/OrganizationPage'
 import AssetsPage from './pages/app/AssetsPage'
@@ -17,18 +19,19 @@ import AuditPage from './pages/app/AuditPage'
 import ReportsPage from './pages/app/ReportsPage'
 import NotificationsPage from './pages/app/NotificationsPage'
 
-// New app placeholder pages (we'll replace these with real pages next)
-const Placeholder = ({ name }) => <div className="text-white h-full flex items-center justify-center text-2xl font-bold opacity-30">{name}</div>
-
 const AppContent = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<Placeholder name="Login" />} />
-      <Route path="/register" element={<Placeholder name="Register" />} />
+      <Route path="/login" element={<AuthPage />} />
+      <Route path="/register" element={<Navigate to="/login" replace />} />
       
-      {/* App Routes */}
-      <Route path="/app" element={<AppLayout />}>
+      {/* Protected App Routes */}
+      <Route path="/app" element={
+        <ProtectedRoute>
+          <AppLayout />
+        </ProtectedRoute>
+      }>
         <Route index element={<Navigate to="/app/dashboard" replace />} />
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="organization" element={<OrganizationPage />} />
@@ -52,8 +55,10 @@ function App() {
     <ErrorBoundary>
       <BrowserRouter>
         <ThemeProvider>
-          <Toast />
-          <AppContent />
+          <AuthProvider>
+            <Toast />
+            <AppContent />
+          </AuthProvider>
         </ThemeProvider>
       </BrowserRouter>
     </ErrorBoundary>

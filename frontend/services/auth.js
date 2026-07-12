@@ -7,11 +7,13 @@ export const authService = {
   register: async (email, password, name) => {
     return api.post('/auth/register', { email, password, name })
   },
-  logout: () => {
-    localStorage.removeItem('auth_token')
+  refresh: async (refreshToken) => {
+    return api.post('/auth/refresh', { refreshToken })
   },
-  getCurrentUser: async () => {
-    return api.get('/auth/me')
+  logout: () => {
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+    localStorage.removeItem('user')
   }
 }
 

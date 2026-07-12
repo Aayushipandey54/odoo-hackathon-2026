@@ -5,36 +5,36 @@ import { NoiseLayer, BackgroundGrid, AmbientGlow } from '../PremiumBackgrounds'
 
 const faqData = [
   {
-    question: "What is Synapse?",
-    answer: "Synapse is an AI-powered enterprise orchestration platform designed to connect operations, pipelines, and knowledge workflows through intelligent system coordination."
+    question: "What is AssetFlow?",
+    answer: "AssetFlow is an AI-powered enterprise orchestration platform designed to connect operations, pipelines, and knowledge workflows through intelligent system coordination."
   },
   {
-    question: "Is Synapse just a workflow scheduler?",
-    answer: "No. Synapse is not designed to run tasks alone. It is designed to orchestrate complex operations, databases, and AI agents across enterprise platforms."
+    question: "Is AssetFlow just a workflow scheduler?",
+    answer: "No. AssetFlow is not designed to run tasks alone. It is designed to orchestrate complex operations, databases, and AI agents across enterprise platforms."
   },
   {
-    question: "Who is Synapse designed for?",
-    answer: "Synapse is designed for CTOs, product managers, platform engineers, and modern teams exploring scalable, connected approaches to business automation."
+    question: "Who is AssetFlow designed for?",
+    answer: "AssetFlow is designed for CTOs, product managers, platform engineers, and modern teams exploring scalable, connected approaches to business automation."
   },
   {
-    question: "What problem is Synapse trying to solve?",
-    answer: "Most platforms organize dashboards or static scripts. Synapse is built to coordinate operations and decision intelligence itself."
+    question: "What problem is AssetFlow trying to solve?",
+    answer: "Most platforms organize dashboards or static scripts. AssetFlow is built to coordinate operations and decision intelligence itself."
   },
   {
-    question: "How is Synapse different from other workflow tools?",
-    answer: "Instead of acting as a destination for task scheduling, Synapse functions as an infrastructure layer that supports how enterprise environments connect, adapt, and scale over time."
+    question: "How is AssetFlow different from other workflow tools?",
+    answer: "Instead of acting as a destination for task scheduling, AssetFlow functions as an infrastructure layer that supports how enterprise environments connect, adapt, and scale over time."
   },
   {
     question: "Why do modern operations need platform intelligence?",
-    answer: "As operations expand beyond static scripts and servers, they require systems that support continuity, coordination, and intelligent pathing across applications. Synapse is designed to support that transition."
+    answer: "As operations expand beyond static scripts and servers, they require systems that support continuity, coordination, and intelligent pathing across applications. AssetFlow is designed to support that transition."
   },
   {
-    question: "When will Synapse be available?",
-    answer: "Access to Synapse is opening in stages. Early teams are invited to join our developer preview to receive updates and early entry opportunities."
+    question: "When will AssetFlow be available?",
+    answer: "Access to AssetFlow is opening in stages. Early teams are invited to join our developer preview to receive updates and early entry opportunities."
   },
   {
-    question: "How can I get early access to Synapse?",
-    answer: "You can join the Synapse early access waitlist to receive updates as the platform becomes available in stages."
+    question: "How can I get early access to AssetFlow?",
+    answer: "You can join the AssetFlow early access waitlist to receive updates as the platform becomes available in stages."
   }
 ]
 

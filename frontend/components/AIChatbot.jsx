@@ -34,7 +34,7 @@ const AIChatbot = () => {
   const [role, setRole] = useState('developers') // Toggleable mock role for landing page demonstration
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
-    { role: 'ai', text: 'Hello. I am the Synapse AI Assistant. How can I support your environment today?' }
+    { role: 'ai', text: 'Hello. I am the AssetFlow AI Assistant. How can I support your environment today?' }
   ])
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
@@ -51,7 +51,7 @@ const AIChatbot = () => {
     setMessages([
       { 
         role: 'ai', 
-        text: `Hello. I am the Synapse AI Assistant. Operating under **${role.toUpperCase()}** parameters. How can I assist you?` 
+        text: `Hello. I am the AssetFlow AI Assistant. Operating under **${role.toUpperCase()}** parameters. How can I assist you?` 
       }
     ])
   }, [role])
@@ -130,7 +130,7 @@ const AIChatbot = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className={`text-lg font-serif italic ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                    Synapse <span className="not-italic font-sans font-bold text-xs uppercase tracking-widest opacity-40 ml-1">AI</span>
+                    AssetFlow <span className="not-italic font-sans font-bold text-xs uppercase tracking-widest opacity-40 ml-1">AI</span>
                   </h3>
                   {/* Role Selector Tabs */}
                   <div className="flex gap-1.5 mt-2">
