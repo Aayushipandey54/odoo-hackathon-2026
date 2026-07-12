@@ -70,7 +70,7 @@ const TestimonialsSection = () => {
             isDark ? 'text-gray-400' : 'text-gray-600'
           }`}
         >
-          Thousands of founders, operations leaders, and engineers trust Synapse to
+          Thousands of founders, operations leaders, and engineers trust AssetFlow to
           transform how their organizations operate every single day.
         </motion.p>
       </div>

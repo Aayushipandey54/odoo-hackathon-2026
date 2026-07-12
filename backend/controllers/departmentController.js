@@ -3,7 +3,7 @@ import ApiResponse from '../utils/apiResponse.js'
 import DepartmentService from '../services/DepartmentService.js'
 
 export const getAllDepartments = asyncHandler(async (req, res) => {
-  const result = await DepartmentService.getAll()
+  const result = await DepartmentService.getAll(req.query)
   res.status(200).json(new ApiResponse(200, result))
 })
 

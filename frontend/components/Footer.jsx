@@ -26,7 +26,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-2 space-y-8">
             <Link to="/" className={`text-xl font-semibold tracking-tight ${isDark ? 'text-white' : 'text-gray-950'}`}>
-              Synapse
+              AssetFlow
             </Link>
             
             <p className={`text-sm leading-relaxed max-w-xs ${textColor}`}>
@@ -88,7 +88,7 @@ const Footer = () => {
                style={{ mixBlendMode: 'overlay', zIndex: 1 }}
              />
 
-            {"synapse".split("").map((char, idx) => {
+            {"assetflow".split("").map((char, idx) => {
               const isHovered = hoveredLetter === idx;
               const isNeighbor = hoveredLetter !== null && Math.abs(hoveredLetter - idx) === 1;
               
@@ -127,7 +127,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className={`pt-8 border-t ${borderColor} flex flex-col md:flex-row justify-between items-center gap-6 relative z-10`}>
           <p className={`text-xs tracking-wide ${textColor}`}>
-            © 2026 Synapse. All rights reserved.
+            © 2026 AssetFlow. All rights reserved.
           </p>
           
           <div className="flex gap-8">

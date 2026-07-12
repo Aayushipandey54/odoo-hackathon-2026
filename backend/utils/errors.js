@@ -41,3 +41,9 @@ export class UnauthorizedError extends DatabaseError {
     super(message, 401)
   }
 }
+
+export class ConflictError extends DatabaseError {
+  constructor(message = 'Conflict occurred') {
+    super(message, 409)
+  }
+}

@@ -158,6 +158,21 @@
     transform-style: preserve-3d;
     perspective: 1000px;
   }
+
+  /* Matrix pattern background */
+  .bg-matrix {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: -1px -1px;
+  }
+  
+  .light-mode .bg-matrix {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  }
 }
 
 /* Particle canvas */

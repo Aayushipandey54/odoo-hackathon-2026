@@ -4,10 +4,10 @@ export default function Button({ children, className, variant = 'primary', size 
   const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none'
   
   const variants = {
-    primary: 'bg-white text-black hover:bg-neutral-200 border border-neutral-300 shadow-sm',
-    secondary: 'bg-neutral-800 text-white hover:bg-neutral-700 border border-neutral-700',
-    outline: 'border border-neutral-300 bg-transparent text-neutral-700 hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800',
-    ghost: 'text-neutral-700 hover:bg-neutral-150 dark:text-neutral-300 dark:hover:bg-white/5',
+    primary: 'bg-foreground text-background hover:opacity-90 shadow-sm',
+    secondary: 'bg-card text-foreground hover:bg-muted border border-border',
+    outline: 'border border-border bg-transparent text-foreground hover:bg-muted',
+    ghost: 'text-muted-foreground hover:text-foreground hover:bg-muted',
     danger: 'bg-red-600 text-white hover:bg-red-500 border border-red-600',
   }
 

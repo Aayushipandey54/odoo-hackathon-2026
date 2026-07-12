@@ -1,8 +1,10 @@
 import AssetCategoryRepository from '../repositories/AssetCategoryRepository.js'
+import { buildQuery } from '../utils/queryBuilder.js'
 
 export class AssetCategoryService {
-  async getAll() {
-    return AssetCategoryRepository.findAll()
+  async getAll(queryParams = {}) {
+    const { where, options } = buildQuery(queryParams, ['name'])
+    return AssetCategoryRepository.findAll(where, options)
   }
 
   async create(data) {

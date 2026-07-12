@@ -4,7 +4,11 @@ import Button from '../../components/ui/Button'
 import { AlertCircle, Plus, CalendarPlus, FileText } from 'lucide-react'
 import { cn } from '../../utils/cn'
 
+import { useNavigate } from 'react-router-dom'
+
 export default function DashboardPage() {
+  const navigate = useNavigate()
+  
   const [stats, setStats] = useState({
     available: 128,
     allocated: 76,
@@ -35,60 +39,60 @@ export default function DashboardPage() {
           
           {/* Top KPI Row */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Card className="bg-[#111111]">
+            <Card>
               <CardBody className="p-5 flex flex-col justify-center">
-                <p className="text-neutral-400 text-sm font-medium mb-1">Available</p>
-                <h3 className="text-3xl font-bold text-white">{stats.available}</h3>
+                <p className="text-secondary-foreground text-sm font-medium mb-1">Available</p>
+                <h3 className="text-3xl font-bold text-foreground">{stats.available}</h3>
               </CardBody>
             </Card>
-            <Card className="bg-[#111111]">
+            <Card>
               <CardBody className="p-5 flex flex-col justify-center">
-                <p className="text-neutral-400 text-sm font-medium mb-1">Allocated</p>
-                <h3 className="text-3xl font-bold text-white">{stats.allocated}</h3>
+                <p className="text-secondary-foreground text-sm font-medium mb-1">Allocated</p>
+                <h3 className="text-3xl font-bold text-foreground">{stats.allocated}</h3>
               </CardBody>
             </Card>
-            <Card className="bg-[#111111]">
+            <Card>
               <CardBody className="p-5 flex flex-col justify-center">
-                <p className="text-neutral-400 text-sm font-medium mb-1">Active Bookings</p>
-                <h3 className="text-3xl font-bold text-white">{stats.activeBookings}</h3>
+                <p className="text-secondary-foreground text-sm font-medium mb-1">Active Bookings</p>
+                <h3 className="text-3xl font-bold text-foreground">{stats.activeBookings}</h3>
               </CardBody>
             </Card>
           </div>
 
           {/* Secondary KPI Row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="bg-[#111111]">
+            <Card>
               <CardBody className="p-5 flex flex-col justify-center border-l-2 border-[#0066FF]">
-                <p className="text-neutral-400 text-sm font-medium mb-1">Pending Transfers</p>
-                <h3 className="text-2xl font-bold text-white">{stats.pendingTransfers}</h3>
+                <p className="text-secondary-foreground text-sm font-medium mb-1">Pending Transfers</p>
+                <h3 className="text-2xl font-bold text-foreground">{stats.pendingTransfers}</h3>
               </CardBody>
             </Card>
-            <Card className="bg-[#111111]">
+            <Card>
               <CardBody className="p-5 flex flex-col justify-center border-l-2 border-[#BF5FFF]">
-                <p className="text-neutral-400 text-sm font-medium mb-1">Upcoming returns</p>
-                <h3 className="text-2xl font-bold text-white">{stats.upcomingReturns}</h3>
+                <p className="text-secondary-foreground text-sm font-medium mb-1">Upcoming returns</p>
+                <h3 className="text-2xl font-bold text-foreground">{stats.upcomingReturns}</h3>
               </CardBody>
             </Card>
           </div>
 
           {/* Quick Actions */}
           <div className="flex gap-4 mt-2">
-            <Button variant="primary" className="gap-2">
-              <Plus className="w-4 h-4" /> register asset
+            <Button variant="primary" className="gap-2" onClick={() => navigate('/app/assets')}>
+              <Plus className="w-4 h-4" /> Register asset
             </Button>
-            <Button variant="outline" className="gap-2 border-white/20 text-white hover:bg-white/5">
+            <Button variant="outline" className="gap-2" onClick={() => navigate('/app/bookings')}>
               <CalendarPlus className="w-4 h-4" /> Book resource
             </Button>
-            <Button variant="outline" className="gap-2 border-white/20 text-white hover:bg-white/5">
+            <Button variant="outline" className="gap-2" onClick={() => navigate('/app/maintenance')}>
               <FileText className="w-4 h-4" /> Raise requests
             </Button>
           </div>
         </div>
 
         {/* Right Column (Recent Activity) */}
-        <Card className="h-full bg-[#111111]">
-          <CardHeader className="border-white/10 pb-3 pt-5 px-5">
-            <h2 className="text-lg font-semibold text-white">Recent Activity</h2>
+        <Card className="h-full">
+          <CardHeader className="border-border pb-3 pt-5 px-5">
+            <h2 className="text-lg font-semibold text-foreground">Recent Activity</h2>
           </CardHeader>
           <CardBody className="px-5 pt-2 pb-5 flex flex-col gap-4">
             {activities.map((activity) => (
@@ -99,7 +103,7 @@ export default function DashboardPage() {
                   activity.type === 'booking' ? 'bg-[#00F5FF] text-[#00F5FF]' : 
                   'bg-[#BF5FFF] text-[#BF5FFF]'
                 )} />
-                <p className="text-sm text-neutral-300 group-hover:text-white transition-colors">
+                <p className="text-sm text-secondary-foreground group-hover:text-foreground transition-colors">
                   {activity.text}
                 </p>
               </div>

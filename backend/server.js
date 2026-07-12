@@ -3,7 +3,7 @@ import config from './config/index.js'
 import { connectDB } from './core/index.js'
 
 /**
- * Main server startup function.
+ * Main server startup function. Triggering restart.
  */
 async function startServer() {
   try {

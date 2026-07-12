@@ -89,7 +89,7 @@ const ScrollStory = () => {
             >
               <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 px-4 py-2 rounded-full mb-6">
                 <AlertCircle className="w-4 h-4 text-red-400" />
-                <span className="text-red-400 text-xs font-bold uppercase tracking-wider">Before Synapse</span>
+                <span className="text-red-400 text-xs font-bold uppercase tracking-wider">Before AssetFlow</span>
               </div>
               <h3 className={`text-3xl md:text-4xl font-black mb-4 ${textPrimary}`}>
                 Death by Spreadsheets
@@ -178,7 +178,7 @@ const ScrollStory = () => {
             </motion.div>
           </div>
 
-          {/* Section 2: Enter Synapse */}
+          {/* Section 2: Enter AssetFlow */}
           <div ref={ref2} className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: 60 }}
@@ -190,7 +190,7 @@ const ScrollStory = () => {
               <div className={`rounded-2xl border overflow-hidden shadow-2xl ${isDark ? 'bg-[#0d0d14] border-white/10' : 'bg-white border-gray-200'}`}>
                 <div className={`flex items-center gap-3 px-4 py-3 border-b ${isDark ? 'border-white/10 bg-white/5' : 'border-gray-100 bg-gray-50'}`}>
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className={`text-[10px] font-bold uppercase tracking-tight ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Synapse AI Control — Live</span>
+                  <span className={`text-[10px] font-bold uppercase tracking-tight ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>AssetFlow AI Control — Live</span>
                 </div>
                 <div className="p-4 grid grid-cols-3 gap-3">
                   {[
@@ -238,13 +238,13 @@ const ScrollStory = () => {
             >
               <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 px-4 py-2 rounded-full mb-6">
                 <Sparkles className="w-4 h-4 text-green-400" />
-                <span className="text-green-400 text-xs font-bold uppercase tracking-wider">After Synapse</span>
+                <span className="text-green-400 text-xs font-bold uppercase tracking-wider">After AssetFlow</span>
               </div>
               <h3 className={`text-3xl md:text-4xl font-black mb-4 ${textPrimary}`}>
                 Your Workflows, Fully Automated
               </h3>
               <p className={`text-lg ${textSecondary} mb-8 leading-relaxed`}>
-                Synapse replaces chaos with clarity. Every process — API building, alerts, integrations, 
+                AssetFlow replaces chaos with clarity. Every process — API building, alerts, integrations, 
                 throughput analytics — runs on autopilot powered by AI.
               </p>
               <div className="space-y-3">
@@ -283,7 +283,7 @@ const ScrollStory = () => {
                 <span className="text-gradient">at Scale</span>
               </h3>
               <p className={`text-lg ${textSecondary} max-w-2xl mx-auto`}>
-                Synapse AI continuously learns from your system data to predict bottlenecks, 
+                AssetFlow AI continuously learns from your system data to predict bottlenecks, 
                 automate workflows, and give you insights you never had before.
               </p>
             </motion.div>

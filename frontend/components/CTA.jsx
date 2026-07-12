@@ -56,7 +56,7 @@ const CTA = () => {
           </h2>
 
           <p className={`text-[16px] leading-[1.6] max-w-xl mx-auto mb-14 ${isDark ? 'text-white/70' : 'text-gray-900/70'}`}>
-            Synapse is being built in collaboration with a selective group of modern teams. 
+            AssetFlow is being built in collaboration with a selective group of modern teams. 
             Join the waitlist to receive updates and secure your place in the next sequence.
           </p>
 

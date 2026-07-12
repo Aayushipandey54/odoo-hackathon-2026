@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardBody } from '../../components/ui/Card'
 import Button from '../../components/ui/Button'
 import { ShieldCheck, Search, AlertCircle, CheckCircle2 } from 'lucide-react'
+import toast from 'react-hot-toast'
 
 export default function AuditPage() {
   const auditItems = [
@@ -15,10 +16,10 @@ export default function AuditPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white mb-1">Asset Audit</h1>
-          <p className="text-neutral-400 text-sm">Conduct physical verification and discrepancy reporting</p>
+          <h1 className="text-2xl font-bold text-foreground mb-1">Asset Audit</h1>
+          <p className="text-muted-foreground text-sm">Conduct physical verification and discrepancy reporting</p>
         </div>
-        <Button variant="primary" className="gap-2">
+        <Button variant="primary" className="gap-2" onClick={() => toast.success('New audit initialized!')}>
           <ShieldCheck className="w-4 h-4" /> Start New Audit
         </Button>
       </div>
@@ -27,41 +28,41 @@ export default function AuditPage() {
         
         {/* Current Audit Cycle */}
         <div className="lg:col-span-2 flex flex-col gap-6">
-          <Card className="bg-[#111111] border-[#0066FF]/20">
-            <CardHeader className="border-b border-white/10 pb-4 pt-5 px-6 flex justify-between items-center">
-              <h2 className="text-lg font-semibold text-white">Q3 Comprehensive Audit</h2>
+          <Card className="bg-card border-border-strong">
+            <CardHeader className="border-b border-border pb-4 pt-5 px-6 flex justify-between items-center">
+              <h2 className="text-lg font-semibold text-foreground">Q3 Comprehensive Audit</h2>
               <span className="bg-[#0066FF]/20 text-[#0066FF] px-3 py-1 rounded-full text-xs font-medium">In Progress</span>
             </CardHeader>
             <CardBody className="px-6 py-5 flex flex-col gap-4">
               
               {/* Progress */}
               <div className="flex items-center gap-4 mb-2">
-                <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+                <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                   <div className="h-full bg-[#0066FF] w-[65%]" />
                 </div>
-                <span className="text-sm font-medium text-white">65% Complete</span>
+                <span className="text-sm font-medium text-foreground">65% Complete</span>
               </div>
 
               {/* Checklist */}
-              <div className="border border-white/10 rounded-xl overflow-hidden mt-4">
-                <div className="bg-white/[0.02] p-3 border-b border-white/10 flex items-center justify-between">
-                  <span className="text-sm font-medium text-neutral-300">Scan or search asset to verify</span>
+              <div className="border border-border rounded-xl overflow-hidden mt-4">
+                <div className="bg-muted/30 p-3 border-b border-border flex items-center justify-between">
+                  <span className="text-sm font-medium text-secondary-foreground">Scan or search asset to verify</span>
                   <div className="relative">
-                    <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
+                    <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <input 
                       type="text" 
                       placeholder="Asset ID..." 
-                      className="bg-[#0a0a0a] border border-white/10 rounded-md pl-9 pr-3 py-1.5 text-sm text-white focus:outline-none w-48"
+                      className="bg-background border border-border rounded-md pl-9 pr-3 py-1.5 text-sm text-foreground focus:outline-none w-48"
                     />
                   </div>
                 </div>
                 
-                <div className="divide-y divide-white/5">
+                <div className="divide-y divide-border">
                   {auditItems.map((item) => (
-                    <div key={item.id} className="p-4 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+                    <div key={item.id} className="p-4 flex items-center justify-between hover:bg-muted/50 transition-colors">
                       <div>
-                        <p className="font-medium text-white text-sm">{item.name}</p>
-                        <p className="text-xs text-neutral-500">{item.id}</p>
+                        <p className="font-medium text-foreground text-sm">{item.name}</p>
+                        <p className="text-xs text-muted-foreground">{item.id}</p>
                       </div>
                       
                       {item.status === 'VERIFIED' && (
@@ -79,17 +80,20 @@ export default function AuditPage() {
                       )}
                       
                       {item.status === 'PENDING' && (
-                        <Button variant="outline" className="text-xs py-1.5 border-white/20">Verify</Button>
+                        <Button variant="outline" className="text-xs py-1.5 border-border-strong" onClick={() => toast.success(`Verified ${item.id}`)}>Verify</Button>
                       )}
                     </div>
                   ))}
                 </div>
               </div>
               
-              <div className="flex justify-end mt-2">
-                 <Button variant="primary" className="bg-[#BF5FFF] text-white hover:bg-[#BF5FFF]/90 border-transparent">
-                   Generate Discrepancy Report
-                 </Button>
+              <div className="mt-6 flex gap-3">
+                <Button variant="primary" className="bg-[#BF5FFF] text-white hover:bg-[#BF5FFF]/90 border-transparent" onClick={() => toast.success('Audit report submitted successfully!')}>
+                  Submit Report
+                </Button>
+                <Button variant="outline" onClick={() => toast('Draft saved')}>
+                  Save Draft
+                </Button>
               </div>
             </CardBody>
           </Card>
@@ -97,30 +101,30 @@ export default function AuditPage() {
 
         {/* Previous Reports */}
         <div className="flex flex-col gap-4">
-          <h3 className="font-semibold text-white">Past Discrepancy Reports</h3>
+          <h3 className="font-semibold text-foreground">Past Discrepancy Reports</h3>
           
-          <Card className="bg-[#111111] border-white/10 hover:border-white/20 cursor-pointer transition-colors">
+          <Card className="bg-card border-border hover:border-border-strong cursor-pointer transition-colors">
             <CardBody className="p-5 flex gap-4">
               <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500">
                 <AlertCircle className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-medium text-white text-sm mb-1">Q2 Audit Report</h4>
-                <p className="text-xs text-neutral-400 mb-2">2 discrepancies found</p>
-                <p className="text-[10px] text-neutral-500">Completed Jun 30, 2026</p>
+                <h4 className="font-medium text-foreground text-sm mb-1">Q2 Audit Report</h4>
+                <p className="text-xs text-muted-foreground mb-2">2 discrepancies found</p>
+                <p className="text-[10px] text-muted-foreground">Completed Jun 30, 2026</p>
               </div>
             </CardBody>
           </Card>
 
-          <Card className="bg-[#111111] border-white/10 hover:border-white/20 cursor-pointer transition-colors">
+          <Card className="bg-card border-border hover:border-border-strong cursor-pointer transition-colors">
             <CardBody className="p-5 flex gap-4">
               <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500">
                 <CheckCircle2 className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-medium text-white text-sm mb-1">Q1 Audit Report</h4>
-                <p className="text-xs text-neutral-400 mb-2">100% matched</p>
-                <p className="text-[10px] text-neutral-500">Completed Mar 31, 2026</p>
+                <h4 className="font-medium text-foreground text-sm mb-1">Q1 Audit Report</h4>
+                <p className="text-xs text-muted-foreground mb-2">100% matched</p>
+                <p className="text-[10px] text-muted-foreground">Completed Mar 31, 2026</p>
               </div>
             </CardBody>
           </Card>
