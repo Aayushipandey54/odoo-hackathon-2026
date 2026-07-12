@@ -1,25 +1,51 @@
+import jwt from 'jsonwebtoken'
 import config from '../config/index.js'
 import { UnauthorizedError } from '../utils/errors.js'
+import { hasPermission } from './permissions.js'
 
-export const auth = (req, res, next) => {
+/**
+ * Validates the JWT Access token in the Authorization header.
+ * Attaches the decoded user payload to req.user.
+ */
+export const authenticate = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1]
   if (!token) {
     return next(new UnauthorizedError('No authentication token found'))
   }
 
-  // Simplified token verification for hackathon (dummy tokens format: dummy_token_{userId})
-  if (token.startsWith('dummy_token_')) {
-    const userId = token.replace('dummy_token_', '')
-    req.user = { id: userId, role: 'EMPLOYEE' } // Could fetch from DB for accurate role
+  try {
+    const decoded = jwt.verify(token, config.jwtAccessSecret)
+    req.user = decoded
     next()
-  } else {
-    next(new UnauthorizedError('Invalid authentication token'))
+  } catch (err) {
+    if (err.name === 'TokenExpiredError') {
+      return next(new UnauthorizedError('Token expired'))
+    }
+    return next(new UnauthorizedError('Invalid authentication token'))
   }
 }
 
-export const requireAdmin = (req, res, next) => {
-  if (req.user?.role !== 'ADMIN') {
-    return next(new UnauthorizedError('Admin access required'))
+/**
+ * Validates if the authenticated user's role has the requested generic permission.
+ * Must be used AFTER authenticate middleware.
+ */
+export const requirePermission = (requiredPermission) => {
+  return (req, res, next) => {
+    if (!req.user || !req.user.role) {
+      return next(new UnauthorizedError('User identity could not be verified'))
+    }
+
+    const isAuthorized = hasPermission(req.user.role, requiredPermission)
+    
+    if (!isAuthorized) {
+      return next(new UnauthorizedError(`Insufficient permissions. Requires: ${requiredPermission}`))
+    }
+
+    next()
   }
-  next()
+}
+
+export default {
+  authenticate,
+  requirePermission
 }

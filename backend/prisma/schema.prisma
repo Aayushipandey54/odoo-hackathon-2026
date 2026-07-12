@@ -89,9 +89,11 @@ model User {
   id        String    @id @default(uuid())
   email     String    @unique
   password  String
-  role      Role      @default(EMPLOYEE)
-  employee  Employee?
-  createdAt DateTime  @default(now())
+  role         Role      @default(EMPLOYEE)
+  refreshToken String?
+  tokenVersion Int       @default(0)
+  employee     Employee?
+  createdAt    DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 }
