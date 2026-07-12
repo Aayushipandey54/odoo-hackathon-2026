@@ -1,0 +1,6 @@
+# .dockerignore Placeholder
+# TODO: Add paths to ignore during Docker build contexts (e.g., node_modules, dist, builds, logs).
+node_modules
+npm-debug.log
+dist
+.git

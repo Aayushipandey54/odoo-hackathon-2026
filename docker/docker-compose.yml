@@ -1,0 +1,6 @@
+# docker-compose.yml Placeholder
+# TODO: Implement complete stack orchestration setup.
+# Services to include:
+# - backend: Node.js API service
+# - frontend: React/Vite development or static file server
+# - database: MongoDB/PostgreSQL database image
