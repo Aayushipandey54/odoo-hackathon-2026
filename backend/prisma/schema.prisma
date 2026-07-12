@@ -1,7 +1,6 @@
 generator client {
   provider      = "prisma-client-js"
   engineType    = "library"
-  previewFeatures = ["partialIndexes"]
 }
 
 datasource db {
@@ -28,6 +27,7 @@ enum AssetStatus {
   AVAILABLE
   ALLOCATED
   MAINTENANCE
+  UNDER_MAINTENANCE
   RETIRED
   DISPOSED
 }
@@ -57,9 +57,11 @@ enum BookingStatus {
 enum MaintenanceStatus {
   PENDING
   APPROVED
+  REJECTED
   TECHNICIAN_ASSIGNED
   IN_PROGRESS
   RESOLVED
+  CLOSED
 }
 
 enum MaintenancePriority {
@@ -211,7 +213,6 @@ model AssetAllocation {
   
   @@index([assetId, returnedAt])
   @@index([employeeId, returnedAt])
-  @@unique([assetId], where: { returnedAt: null })
 }
 
 model TransferRequest {
@@ -286,18 +287,23 @@ model ResourceBooking {
 }
 
 model MaintenanceRequest {
-  id           String              @id @default(uuid())
-  assetId      String
-  asset        Asset               @relation(fields: [assetId], references: [id])
-  issue        String
-  status       MaintenanceStatus   @default(PENDING)
-  priority     MaintenancePriority @default(MEDIUM)
-  technicianId String?
-  technician   Employee?           @relation("Technician", fields: [technicianId], references: [id])
-  resolvedAt   DateTime?
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
-  deletedAt    DateTime?
+  id                String               @id @default(uuid())
+  assetId           String
+  asset             Asset                @relation(fields: [assetId], references: [id])
+  issue             String
+  status            MaintenanceStatus    @default(PENDING)
+  priority          MaintenancePriority  @default(MEDIUM)
+  technicianId      String?
+  technician        Employee?            @relation("Technician", fields: [technicianId], references: [id])
+  assignedDate      DateTime?
+  repairNotes       String?
+  resolutionSummary String?
+  attachments       String?
+  history           MaintenanceHistory[]
+  resolvedAt        DateTime?
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  deletedAt         DateTime?
 }
 
 model AuditCycle {
@@ -417,4 +423,16 @@ model AssetTimeline {
   
   @@index([assetId])
   @@index([assetId, createdAt])
+}
+
+model MaintenanceHistory {
+  id             String             @id @default(uuid())
+  requestId      String
+  request        MaintenanceRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  timestamp      DateTime           @default(now())
+  performedBy    String
+  previousStatus MaintenanceStatus?
+  newStatus      MaintenanceStatus
+  remarks        String?
+  createdAt      DateTime           @default(now())
 }
