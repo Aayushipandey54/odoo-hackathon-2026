@@ -1,6 +1,6 @@
 generator client {
-  provider        = "prisma-client-js"
-  engineType      = "library"
+  provider   = "prisma-client-js"
+  engineType = "library"
 }
 
 datasource db {
@@ -97,19 +97,19 @@ model User {
 }
 
 model Department {
-  id           String             @id @default(uuid())
-  name         String
-  headId       String?
-  parentId     String?
-  status       DepartmentStatus   @default(ACTIVE)
-  parent       Department?        @relation("DepartmentHierarchy", fields: [parentId], references: [id])
-  children     Department[]       @relation("DepartmentHierarchy")
-  employees    Employee[]
-  assets       Asset[]
-  audits       AuditCycle[]
-  createdAt    DateTime           @default(now())
-  updatedAt    DateTime           @updatedAt
-  deletedAt    DateTime?
+  id        String           @id @default(uuid())
+  name      String
+  headId    String?
+  parentId  String?
+  status    DepartmentStatus @default(ACTIVE)
+  parent    Department?      @relation("DepartmentHierarchy", fields: [parentId], references: [id])
+  children  Department[]     @relation("DepartmentHierarchy")
+  employees Employee[]
+  assets    Asset[]
+  audits    AuditCycle[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  deletedAt DateTime?
 }
 
 model AssetCategory {
@@ -122,58 +122,58 @@ model AssetCategory {
 }
 
 model Employee {
-  id                  String               @id @default(uuid())
-  userId              String               @unique
-  user                User                 @relation(fields: [userId], references: [id])
-  name                String
-  departmentId        String
-  department          Department           @relation(fields: [departmentId], references: [id])
-  allocations         AssetAllocation[]
-  currentAssets       Asset[]              @relation("CurrentAssignee")
-  transfersSent       TransferRequest[]    @relation("TransferFrom")
-  transfersReceived   TransferRequest[]    @relation("TransferTo")
-  bookings            ResourceBooking[]
-  maintenanceTasks    MaintenanceRequest[] @relation("Technician")
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @updatedAt
-  deletedAt           DateTime?
+  id                String               @id @default(uuid())
+  userId            String               @unique
+  user              User                 @relation(fields: [userId], references: [id])
+  name              String
+  departmentId      String
+  department        Department           @relation(fields: [departmentId], references: [id])
+  allocations       AssetAllocation[]
+  currentAssets     Asset[]              @relation("CurrentAssignee")
+  transfersSent     TransferRequest[]    @relation("TransferFrom")
+  transfersReceived TransferRequest[]    @relation("TransferTo")
+  bookings          ResourceBooking[]
+  maintenanceTasks  MaintenanceRequest[] @relation("Technician")
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  deletedAt         DateTime?
 }
 
 model Asset {
-  id             String               @id @default(uuid())
-  tag            String               @unique
-  name           String
-  categoryId     String
-  category       AssetCategory        @relation(fields: [categoryId], references: [id])
-  departmentId   String
-  department     Department           @relation(fields: [departmentId], references: [id])
-  status         AssetStatus          @default(AVAILABLE)
-  condition      AssetCondition       @default(NEW)
-  location       String?
-  assigneeId     String?
-  currentAssignee Employee?           @relation("CurrentAssignee", fields: [assigneeId], references: [id])
-  allocations    AssetAllocation[]
-  transfers      TransferRequest[]
-  maintenance    MaintenanceRequest[]
-  auditItems     AuditItem[]
-  purchaseDate   DateTime?
-  createdAt      DateTime             @default(now())
-  updatedAt      DateTime             @updatedAt
-  deletedAt      DateTime?
+  id              String               @id @default(uuid())
+  tag             String               @unique
+  name            String
+  categoryId      String
+  category        AssetCategory        @relation(fields: [categoryId], references: [id])
+  departmentId    String
+  department      Department           @relation(fields: [departmentId], references: [id])
+  status          AssetStatus          @default(AVAILABLE)
+  condition       AssetCondition       @default(NEW)
+  location        String?
+  assigneeId      String?
+  currentAssignee Employee?            @relation("CurrentAssignee", fields: [assigneeId], references: [id])
+  allocations     AssetAllocation[]
+  transfers       TransferRequest[]
+  maintenance     MaintenanceRequest[]
+  auditItems      AuditItem[]
+  purchaseDate    DateTime?
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  deletedAt       DateTime?
 }
 
 model AssetAllocation {
-  id         String    @id @default(uuid())
-  assetId    String
-  asset      Asset     @relation(fields: [assetId], references: [id])
-  employeeId String
-  employee   Employee  @relation(fields: [employeeId], references: [id])
-  allocatedAt DateTime @default(now())
-  returnedAt  DateTime?
+  id                String          @id @default(uuid())
+  assetId           String
+  asset             Asset           @relation(fields: [assetId], references: [id])
+  employeeId        String
+  employee          Employee        @relation(fields: [employeeId], references: [id])
+  allocatedAt       DateTime        @default(now())
+  returnedAt        DateTime?
   conditionOnReturn AssetCondition?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  deletedAt  DateTime?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  deletedAt         DateTime?
 }
 
 model TransferRequest {
@@ -194,7 +194,7 @@ model TransferRequest {
 model Resource {
   id        String            @id @default(uuid())
   name      String
-  type      String            // e.g., "Conference Room", "Van"
+  type      String // e.g., "Conference Room", "Van"
   bookings  ResourceBooking[]
   createdAt DateTime          @default(now())
   updatedAt DateTime          @updatedAt
@@ -231,17 +231,17 @@ model MaintenanceRequest {
 }
 
 model AuditCycle {
-  id           String        @id @default(uuid())
+  id           String      @id @default(uuid())
   name         String
   departmentId String
-  department   Department    @relation(fields: [departmentId], references: [id])
+  department   Department  @relation(fields: [departmentId], references: [id])
   startDate    DateTime
   endDate      DateTime
-  isClosed     Boolean       @default(false)
+  isClosed     Boolean     @default(false)
   auditorNames String
   items        AuditItem[]
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
   deletedAt    DateTime?
 }
 
@@ -259,15 +259,15 @@ model AuditItem {
 }
 
 model ActivityLog {
-  id        String   @id @default(uuid())
-  action    String
-  details   String?
-  entityId  String?
+  id         String    @id @default(uuid())
+  action     String
+  details    String?
+  entityId   String?
   entityType String?
-  userId    String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  deletedAt DateTime?
+  userId     String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
 }
 
 model Notification {
