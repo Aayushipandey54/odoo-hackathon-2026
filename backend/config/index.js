@@ -18,6 +18,10 @@ export const config = {
   databaseUrl: process.env.DATABASE_URL,
   jwtSecret: process.env.JWT_SECRET || 'hackathon_jwt_super_secret_key_change_me',
   corsOrigin: process.env.CORS_ORIGIN || '*',
+  pagination: {
+    defaultLimit: 10,
+    maxLimit: 100
+  }
 }
 
 export default config

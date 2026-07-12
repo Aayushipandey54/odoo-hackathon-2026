@@ -29,7 +29,7 @@ export {
 // Query & Pagination Utilities
 export { paginate } from '../utils/pagination.js'
 export { buildQuery } from '../utils/queryBuilder.js'
-export { validateDocument } from '../utils/validation.js'
+export { validate } from '../utils/validation.js'
 
 // Constants
 export { COLLECTIONS } from './constants.js'

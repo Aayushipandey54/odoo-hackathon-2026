@@ -8,12 +8,15 @@ export class ApiResponse {
    * @param {number} statusCode - HTTP status code
    * @param {any} data - Response payload data
    * @param {string} message - Response message
+   * @param {Object} meta - Optional metadata (e.g. pagination)
+   * @param {Array|Object} errors - Optional validation errors or details
    */
-  constructor(statusCode, data, message = 'Success') {
-    this.statusCode = statusCode
-    this.data = data
+  constructor(statusCode, data, message = 'Success', meta = null, errors = null) {
+    this.success = statusCode >= 200 && statusCode < 400
     this.message = message
-    this.success = statusCode < 400
+    this.data = data
+    if (meta) this.meta = meta
+    if (errors) this.errors = errors
   }
 }
 

@@ -1,14 +1,19 @@
-import mongoose from 'mongoose'
+import { prisma } from '../core/connection.js'
 
 /**
  * Health check controller checking status of the server and active database connection.
  */
 export const getHealth = async (req, res, next) => {
   try {
-    // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
-    const dbState = mongoose.connection.readyState
-    const states = ['DISCONNECTED', 'CONNECTED', 'CONNECTING', 'DISCONNECTING']
-    const dbStatus = states[dbState] || 'UNKNOWN'
+    let dbStatus = 'DISCONNECTED'
+    
+    try {
+      // Ping database
+      await prisma.$queryRaw`SELECT 1`
+      dbStatus = 'CONNECTED'
+    } catch (e) {
+      dbStatus = 'DISCONNECTED'
+    }
 
     res.status(200).json({
       success: true,

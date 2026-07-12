@@ -145,6 +145,25 @@ export class GenericRepository {
   }
 
   /**
+   * Restore a soft-deleted record by ID.
+   * @param {string} id
+   * @returns {Promise<any>}
+   */
+  async restore(id) {
+    try {
+      return await this.model.update({
+        where: { id },
+        data: { deletedAt: null }
+      })
+    } catch (err) {
+      if (err.code === 'P2025') {
+        throw new NotFoundError(`Record not found for id "${id}"`)
+      }
+      throw err
+    }
+  }
+
+  /**
    * Check if any record matches filter.
    * @param {Object} filter
    * @returns {Promise<boolean>}
@@ -171,11 +190,11 @@ export class GenericRepository {
    * Paginate documents.
    * @param {Object} filter
    * @param {Object} options
-   * @returns {Promise<{ docs: Array, total: number, limit: number, page: number, pages: number }>}
+   * @returns {Promise<Object>}
    */
   async paginate(filter = {}, options = {}) {
-    const page = options.page || 1
-    const limit = options.limit || 10
+    const page = Math.max(1, parseInt(options.page || 1, 10))
+    const limit = Math.max(1, parseInt(options.limit || 10, 10))
     const skip = (page - 1) * limit
     const where = { ...filter, deletedAt: null }
 
@@ -189,12 +208,16 @@ export class GenericRepository {
       })
     ])
 
+    const totalPages = Math.ceil(total / limit)
+
     return {
       docs,
       total,
       limit,
       page,
-      pages: Math.ceil(total / limit)
+      totalPages,
+      hasNext: page < totalPages,
+      hasPrevious: page > 1
     }
   }
 }

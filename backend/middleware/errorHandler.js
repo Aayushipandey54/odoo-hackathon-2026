@@ -1,3 +1,15 @@
+import { ApiResponse } from '../utils/apiResponse.js'
+
+/**
+ * 404 Not Found Middleware.
+ * Captures requests to undefined routes.
+ */
+export function notFoundHandler(req, res, next) {
+  const err = new Error(`Route Not Found - ${req.originalUrl}`)
+  err.status = 404
+  next(err)
+}
+
 /**
  * Global Error Handling Middleware.
  * Prevents stack trace leakages in production environment.
@@ -29,15 +41,19 @@ export function errorHandler(err, req, res, _next) {
   if (err.name === 'ValidationError') {
     status = 400
     message = 'Validation failed'
-    errors = err.errors
+    errors = err.details || err.errors
   }
 
-  res.status(status).json({
-    success: false,
+  // Use ApiResponse format
+  const response = new ApiResponse(
+    status,
+    null,
     message,
-    errors,
-    stack: isProduction ? undefined : err.stack,
-  })
+    isProduction ? null : { stack: err.stack },
+    errors
+  )
+
+  res.status(status).json(response)
 }
 
 export default errorHandler
